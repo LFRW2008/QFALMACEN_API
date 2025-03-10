@@ -1,0 +1,6 @@
+@QF_ALMACEN_API_HostAddress = http://localhost:5066
+
+GET {{QF_ALMACEN_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
