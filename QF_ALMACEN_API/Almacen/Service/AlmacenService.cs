@@ -12,7 +12,24 @@ namespace QF_ALMACEN_API.Almacen.Service
             _AlmacenRepository = almacenRepository;
         }
 
-        //MAS METODOS :D
+       public string listarOrdenCompra_Almacen()
+        {
+            return _AlmacenRepository.listarOrdenCompra_Almacen();
+        }
+        public string listarProveedores_Almacen()
+        {
+            return _AlmacenRepository.listarProveedores_Almacen();
+        }
+
+        public string buscarOrdenCompra_Almacen(int idOC)
+        {
+            return _AlmacenRepository.buscarOrdenCompra_Almacen(idOC);
+        }
+
+        public string listarDetalleCompras_Almacen(int idOC)
+        {
+            return _AlmacenRepository.listarDetalleCompras_Almacen(idOC);
+        }
 
     }
 }

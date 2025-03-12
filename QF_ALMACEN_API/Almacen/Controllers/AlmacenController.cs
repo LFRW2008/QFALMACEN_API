@@ -17,11 +17,30 @@ namespace QF_ALMACEN_API.Almacen.Controllers
 
         //metodos finales
 
-        [HttpGet("test")]
-        public IActionResult Test()
+        [HttpGet("listarOrdenCompra_Almacen")]
+        public string listarOrdenCompra_Almacen()
         {
-            return Ok(new { message = "API funcionando correctamente" });
+            return _AlmacenService.listarOrdenCompra_Almacen();
         }
+
+        [HttpGet("listarProveedores_Almacen")]
+        public string listarProveedores_Almacen()
+        {
+            return _AlmacenService.listarProveedores_Almacen();
+        }
+
+        [HttpGet("buscarOrdenCompra_Almacen")]
+        public string buscarOrdenCompra_Almacen(int idOC)
+        {
+            return _AlmacenService.buscarOrdenCompra_Almacen(idOC);
+        }
+        [HttpGet("listarDetalleCompras_Almacen")]
+        public string listarDetalleCompras_Almacen(int idOC)
+        {
+            return _AlmacenService.listarDetalleCompras_Almacen(idOC);
+        }
+
+
 
 
     }

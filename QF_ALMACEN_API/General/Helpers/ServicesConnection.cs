@@ -15,7 +15,7 @@ namespace QF_ALMACEN_API.General.Helpers
         private readonly string ? _connectionALMACEN;
         public ServicesConnection(IConfiguration configuration)
         {
-            // _connectionLOGISTICA = configuration.GetConnectionString("LogisticaQFConnection");
+            _connectionLOGISTICA = configuration.GetConnectionString("LogisticaQFConnection");
             //_connection = configuration.GetConnectionString("LogisticaQFConnection");
             // _connectionSISLAB = configuration.GetConnectionString("SislabConnection");
 
