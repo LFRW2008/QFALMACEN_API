@@ -31,5 +31,19 @@ namespace QF_ALMACEN_API.Almacen.Service
             return _AlmacenRepository.listarDetalleCompras_Almacen(idOC);
         }
 
+        public string buscarLote_X_producto(int idproducto)
+        {
+            return _AlmacenRepository.buscarLote_X_producto(idproducto);
+        }
+        public string listarDocumentoTributario()
+        {
+            return _AlmacenRepository.listarDocumentoTributario();
+        }
+
+        public string listarEstadosPreIngreso()
+        {
+            return _AlmacenRepository.listarEstadosPreIngreso();
+        }
+
     }
 }

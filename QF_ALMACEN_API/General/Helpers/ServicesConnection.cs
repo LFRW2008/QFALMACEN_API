@@ -21,7 +21,7 @@ namespace QF_ALMACEN_API.General.Helpers
 
             //_connectionSIGE = configuration.GetConnectionString("SigeConnection");
 
-            _connectionALMACEN = configuration.GetConnectionString("SigeConnection");
+            _connectionALMACEN = configuration.GetConnectionString("AlmacenConnection");
 
 
         }

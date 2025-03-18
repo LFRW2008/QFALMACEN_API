@@ -39,8 +39,21 @@ namespace QF_ALMACEN_API.Almacen.Controllers
         {
             return _AlmacenService.listarDetalleCompras_Almacen(idOC);
         }
-
-
+        [HttpGet("buscarLote_X_producto")]
+        public string buscarLote_X_producto(int idproducto)
+        {
+            return _AlmacenService.buscarLote_X_producto(idproducto);
+        }
+        [HttpGet("listarDocumentoTributario")]
+        public string listarDocumentoTributario()
+        {
+            return _AlmacenService.listarDocumentoTributario();
+        }
+        [HttpGet("listarEstadosPreIngreso")]
+        public string listarEstadosPreIngreso()
+        {
+            return _AlmacenService.listarEstadosPreIngreso();
+        }
 
 
     }

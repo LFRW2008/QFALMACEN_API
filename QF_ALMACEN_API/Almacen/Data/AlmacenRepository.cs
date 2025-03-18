@@ -41,5 +41,23 @@ namespace QF_ALMACEN_API.Almacen.Data
             return _connectionString.MetodoDatatabletostringsql("Almacen.listarDetalleCompras_Almacen", parametros, 1);
 
         }
+
+        public string buscarLote_X_producto(int idProducto)
+        {
+            var parametros = new DynamicParameters();
+            parametros.Add("@idProducto", idProducto);
+            return _connectionString.MetodoDatatabletostringsql("almacen.sp_buscarLote_X_producto", parametros, 4);
+        }
+
+        public string listarDocumentoTributario()
+        {
+            return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_listarDocumentoTributario", null, 4);
+
+        }
+
+        public string listarEstadosPreIngreso()
+        {
+            return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_listarEstadosPreIngreso", null, 4);
+        }
     }
 }
