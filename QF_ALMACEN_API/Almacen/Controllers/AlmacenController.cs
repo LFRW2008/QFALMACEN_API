@@ -54,6 +54,26 @@ namespace QF_ALMACEN_API.Almacen.Controllers
         {
             return _AlmacenService.listarEstadosPreIngreso();
         }
+        [HttpGet("listarEstadoBuscarOCPre")]
+        public string listarEstadoBuscarOCPre()
+        {
+            return _AlmacenService.listarEstadoBuscarOCPre();
+        }
+        [HttpGet("listarOCConPreingreso")]
+        public string listarOCConPreingreso()
+        {
+            return _AlmacenService.listarOCConPreingreso();
+        }
+        [HttpGet("buscarPreingreso_X_ID")]
+        public string buscarPreingreso_X_ID(int idOC)
+        {
+            return _AlmacenService.buscarPreingreso_X_ID(idOC);
+        }
+        [HttpGet("listarDetalle_PreIngreso_X_idOC")]
+        public string listarDetalle_PreIngreso_X_idOC(int idOC)
+        {
+            return _AlmacenService.listarDetalle_PreIngreso_X_idOC(idOC);
+        }
 
 
     }

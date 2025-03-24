@@ -59,5 +59,31 @@ namespace QF_ALMACEN_API.Almacen.Data
         {
             return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_listarEstadosPreIngreso", null, 4);
         }
+
+        public string listarEstadoBuscarOCPre()
+        {
+            return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_listarEstadoBuscarOCPre", null, 4);
+        }
+
+        public string listarOCConPreingreso()
+        {
+            return _connectionString.MetodoDatatabletostringsql("almacen.sp_listarOCConPreingreso", null, 1);
+        }
+
+        public string buscarPreingreso_X_ID(int idOC)
+        {
+            var parameters = new DynamicParameters();
+
+            parameters.Add("@idOC", idOC);
+            return _connectionString.MetodoDatatabletostringsql("Almacen.sp_buscarPreingreso_X_ID", parameters, 1);
+        }
+
+        public string listarDetalle_PreIngreso_X_idOC(int idOC)
+        {
+            var parameters = new DynamicParameters();
+
+            parameters.Add("@idOC", idOC);
+            return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_listarDetalle_PreIngreso_X_idOC", parameters, 4);
+        }
     }
 }

@@ -45,5 +45,24 @@ namespace QF_ALMACEN_API.Almacen.Service
             return _AlmacenRepository.listarEstadosPreIngreso();
         }
 
+        public string listarEstadoBuscarOCPre()
+        {
+            return _AlmacenRepository.listarEstadoBuscarOCPre();
+        }
+
+        public string listarOCConPreingreso()
+        {
+            return _AlmacenRepository.listarOCConPreingreso();
+        }
+        public string buscarPreingreso_X_ID(int idOC)
+        {
+            return _AlmacenRepository.buscarPreingreso_X_ID(idOC);
+        }
+
+        public string listarDetalle_PreIngreso_X_idOC(int idOC)
+        {
+            return _AlmacenRepository.listarDetalle_PreIngreso_X_idOC(idOC);
+        }
+
     }
 }
