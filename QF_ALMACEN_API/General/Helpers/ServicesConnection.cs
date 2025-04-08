@@ -115,7 +115,7 @@ namespace QF_ALMACEN_API.General.Helpers
                         }
                         else
                         {
-                            respuesta = "ERROR";
+                            respuesta = command.Parameters[parametrosalida].Value.ToString();
                         }
                         connection.Close();
                     }
