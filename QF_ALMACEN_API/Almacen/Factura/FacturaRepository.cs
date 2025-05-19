@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using QF_ALMACEN_API.General.Helpers;
+using System.Runtime.CompilerServices;
 
 namespace QF_ALMACEN_API.Almacen.Factura
 {
@@ -55,6 +56,49 @@ namespace QF_ALMACEN_API.Almacen.Factura
             var parameters = new DynamicParameters();
             parameters.Add("@idProducto", idProducto);
             return _connectionString.MetodoDatatabletostringsql("Factura.sp_buscar_ultima_compra_Producto", parameters, 4);
+        }
+
+        public string ListaPrecio_X_Producto(int idproducto)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@idproducto", idproducto);
+            return _connectionString.MetodoDatatabletostringsql("Factura.sp_ListaPrecio_X_Producto", parameters, 4);
+        }
+
+        public string ActualizarCostos(string jsonFactura)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@jsonFactura", jsonFactura);
+            return _connectionString.MetodoRespuestasql("Factura.sp_ActualizarCostos", parameters, 150, 4);
+        }
+
+        public string ObtenerLote_AprobarFactura(int idFactura)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@idFactura", idFactura);
+            return _connectionString.MetodoDatatabletostringsql("Factura.ObtenerLote_AprobarFactura", parameter, 4);
+        }
+
+
+        public string retirarLotes_al_AnularFactura(int idFactura, int idSucursal, int idUsuario, string userName)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@idFactura", idFactura);
+            parameter.Add("@idSucursal", idSucursal);
+            parameter.Add("@idUsuario", idUsuario);
+            parameter.Add("@userName", userName);
+            return _connectionString.MetodoRespuestasql("Factura.sp_retirarLotes_al_AnularFactura_TEST", parameter, 150, 4);
+        }
+
+        public string ingresarLotes_AprobarFactura(int idFactura, int idSucursal, int idUsuario, string userName)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@idFactura", idFactura);
+            parameter.Add("@idSucursal", idSucursal);
+            parameter.Add("@idUsuario", idUsuario);
+            parameter.Add("@userName", userName);
+
+            return _connectionString.MetodoRespuestasql("Factura.sp_ingresarLotes_TEST", parameter, 150, 4);
         }
 
     }

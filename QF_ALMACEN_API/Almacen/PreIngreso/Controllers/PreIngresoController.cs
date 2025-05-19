@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QF_ALMACEN_API.Almacen.Factura;
 using QF_ALMACEN_API.Almacen.PreIngreso.Service;
 
 namespace QF_ALMACEN_API.Almacen.PreIngreso.Controllers
@@ -88,6 +89,21 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Controllers
         public string listar_fabricantes()
         {
             return _PreIngresoService.listar_fabricantes();
+        }
+        [HttpPost("LotesPI_a_ProductoLote")]
+        public string LotesPI_a_ProductoLote([FromBody] string jsonLotes)
+        {
+            return _PreIngresoService.LotesPI_a_ProductoLote(jsonLotes);
+        }
+        [HttpPost("AnularPreIngresoLotes")]
+        public string AnularPreIngresoLotes([FromBody] string jsonLotes)
+        {
+            return _PreIngresoService.AnularPreIngresoLotes(jsonLotes);
+        }
+        [HttpGet("ListarFacturas_PreIngreso")]
+        public string ListarFacturas_PreIngreso(int idPreIngreso)
+        {
+            return _PreIngresoService.ListarFacturas_PreIngreso(idPreIngreso);
         }
 
     }

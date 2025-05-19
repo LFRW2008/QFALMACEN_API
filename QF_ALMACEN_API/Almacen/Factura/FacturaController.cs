@@ -48,6 +48,32 @@ namespace QF_ALMACEN_API.Almacen.Factura
         {
             return _FacturaService.buscar_ultima_compra_Producto(idProducto);
         }
+        [HttpGet("ListaPrecio_X_Producto")]
+        public string ListaPrecio_X_Producto(int idproducto)
+        {
+            return _FacturaService.ListaPrecio_X_Producto(idproducto);
+        }
+        [HttpPost("ActualizarCostos")]
+        public string ActualizarCostos([FromBody] string jsonFactura)
+        {
+            return _FacturaService.ActualizarCostos(jsonFactura);
+        }
+
+        [HttpGet("ObtenerLote_AprobarFactura")]
+        public string ObtenerLote_AprobarFactura(int idFactura)
+        {
+            return _FacturaService.ObtenerLote_AprobarFactura(idFactura);
+        }
+        [HttpGet("retirarLotes_al_AnularFactura")]
+        public string retirarLotes_al_AnularFactura(int idFactura, int idSucursal, int idUsuario, string userName)
+        {
+            return _FacturaService.retirarLotes_al_AnularFactura(idFactura, idSucursal, idUsuario, userName);
+        }
+        [HttpGet("ingresarLotes_AprobarFactura")]
+        public string ingresarLotes_AprobarFactura(int idFactura, int idSucursal, int idUsuario, string userName)
+        {
+            return _FacturaService.ingresarLotes_AprobarFactura(idFactura,idSucursal,idUsuario,userName);
+        }
 
     }
 }

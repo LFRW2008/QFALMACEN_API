@@ -1,4 +1,5 @@
-﻿using QF_ALMACEN_API.Almacen.PreIngreso.Data;
+﻿using QF_ALMACEN_API.Almacen.Factura;
+using QF_ALMACEN_API.Almacen.PreIngreso.Data;
 
 namespace QF_ALMACEN_API.Almacen.PreIngreso.Service
 {
@@ -75,6 +76,21 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Service
         public string listar_fabricantes()
         {
             return _PreIngresoRepository.listar_fabricantes();
+        }
+
+        public string LotesPI_a_ProductoLote(string jsonLotes)
+        {
+            return _PreIngresoRepository.LotesPI_a_ProductoLote(jsonLotes);
+        }
+
+        public string AnularPreIngresoLotes(string jsonLotes)
+        {
+            return _PreIngresoRepository.AnularPreIngresoLotes(jsonLotes);
+        }
+
+        public string ListarFacturas_PreIngreso(int idPreIngreso)
+        {
+            return _PreIngresoRepository.ListarFacturas_PreIngreso(idPreIngreso);
         }
 
     }

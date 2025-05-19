@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QF_ALMACEN_API.Almacen.Factura
 {
@@ -45,6 +46,32 @@ namespace QF_ALMACEN_API.Almacen.Factura
         {
             return _FacturaRepository.buscar_ultima_compra_Producto(idProducto);
         }
+
+        public string ListaPrecio_X_Producto(int idproducto)
+        {
+            return _FacturaRepository.ListaPrecio_X_Producto(idproducto);
+        }
+
+        public string ActualizarCostos(string jsonFactura)
+        {
+            return _FacturaRepository.ActualizarCostos(jsonFactura);
+        }
+
+        public string ObtenerLote_AprobarFactura(int idFactura)
+        {
+            return _FacturaRepository.ObtenerLote_AprobarFactura(idFactura);
+        }
+
+        public string retirarLotes_al_AnularFactura(int idFactura, int idSucursal, int idUsuario, string userName)
+        {
+            return _FacturaRepository.retirarLotes_al_AnularFactura(idFactura, idSucursal, idUsuario, userName);
+        }
+
+        public string ingresarLotes_AprobarFactura(int idFactura, int idSucursal, int idUsuario, string userName)
+        {
+            return _FacturaRepository.ingresarLotes_AprobarFactura(idFactura, idSucursal, idUsuario, userName);
+        }
+
 
     }
 }

@@ -102,5 +102,28 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Data
         {
             return _connectionString.MetodoDatatabletostringsql("Almacen.sp_listar_fabricantes", null, 1);
         }
+
+        public string LotesPI_a_ProductoLote(string jsonLotes)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@jsonLotes", jsonLotes);
+            return _connectionString.MetodoRespuestasql("Almacen.sp_LotesPI_a_ProductoLote", parameters, 100, 4);
+        }
+
+
+        public string AnularPreIngresoLotes(string jsonLotes)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@jsonLotes", jsonLotes);
+            return _connectionString.MetodoRespuestasql("Almacen.sp_AnularPreIngresoLotes", parameters, 100, 4);
+        }
+
+        public string ListarFacturas_PreIngreso(int idPreIngreso)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@idPreIngreso", idPreIngreso);
+            return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_ListarFacturas_PreIngreso", parameters, 4);
+        }
+
     }
 }
