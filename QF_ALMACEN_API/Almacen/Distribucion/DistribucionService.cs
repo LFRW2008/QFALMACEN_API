@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using QF_ALMACEN_API.Almacen.Distribucion.Models;
 using System.Data;
 
@@ -16,6 +17,11 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         public async Task<IEnumerable<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto, int idsucursal, int idlaboratorio, int idalmacensucursal)
         {
             return await _distribucionRepository.DistribucionObtenerStockAsync(descripcion_producto, idsucursal, idlaboratorio, idalmacensucursal);
+        }
+
+        public async Task<object> ObtenerCorrelativoGuiaAsync(int idsucursal)
+        {
+            return await _distribucionRepository.ObtenerCorrelativoGuiaAsync(idsucursal);
         }
     }
 }

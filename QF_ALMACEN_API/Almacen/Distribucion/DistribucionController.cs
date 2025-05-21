@@ -21,5 +21,12 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var lista = await _distribucionService.DistribucionObtenerStockAsync(descripcion_producto, idsucursal, idlaboratorio, idalmacensucursal);
             return Ok(lista);
         }
+
+        [HttpGet("ObtenerCorrelativoGuia")]
+        public async Task<object> ObtenerCorrelativoGuiaAsyncAsync(int idsucursal)
+        {
+            var lista = await _distribucionService.ObtenerCorrelativoGuiaAsync(idsucursal);
+            return Ok(lista);
+        }
     }
 }
