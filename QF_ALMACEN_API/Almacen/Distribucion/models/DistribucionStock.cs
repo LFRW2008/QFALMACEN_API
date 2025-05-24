@@ -10,4 +10,12 @@
         public decimal stock { get; set; }
         public string ventas { get; set; } = "A";
     }
+
+    public class VentasProducto
+    {
+        public int idproducto { get; set; }
+        public int idsucursal { get; set; }
+        public string periodo { get; set; }
+        public int cantidadventas { get; set; }
+    }
 }
