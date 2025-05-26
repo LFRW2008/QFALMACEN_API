@@ -22,10 +22,24 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             return Ok(lista);
         }
 
-        [HttpGet("ObtenerCorrelativoGuia")]
-        public async Task<object> ObtenerCorrelativoGuiaAsyncAsync(int idsucursal)
+        [HttpGet("DistribucionCorrelativosGuia")]
+        public async Task<object> DistribucionCorrelativosGuiaAsync(int idsucursal)
         {
-            var lista = await _distribucionService.ObtenerCorrelativoGuiaAsync(idsucursal);
+            var lista = await _distribucionService.DistribucionCorrelativosGuiaAsync(idsucursal);
+            return Ok(lista);
+        }
+
+        [HttpGet("VentasUltimosMeses")]
+        public async Task<ActionResult<VentasProducto>> VentasUltimosMesesAsync(string idproductos, string idsucursales, int meses)
+        {
+            var lista = await _distribucionService.VentasUltimosMesesAsync(idproductos, idsucursales, meses);
+            return Ok(lista);
+        }
+
+        [HttpGet("DistribucionObtenerStockActualYTransito")]
+        public async Task<ActionResult<DistribucionStockActualTransito>> DistribucionObtenerStockActualYTransitoAsync(string productos, string sucursales)
+        {
+            var lista = await _distribucionService.DistribucionObtenerStockActualYTransitoAsync(productos, sucursales);
             return Ok(lista);
         }
     }
