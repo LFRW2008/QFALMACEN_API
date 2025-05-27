@@ -54,5 +54,15 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return await connection.QueryAsync<DistribucionStockActualTransito>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
+
+        //public async Task<IEnumerable<DistribucionStockActualTransito>> DistribucionObtenerStockActualYTransitoAsync(string productos, string sucursales)
+        //{
+        //    using (var connection = new SqlConnection(_connectionString))
+        //    {
+        //        var query = "[almacen].[sp_DistribucionAsignarLotesFEFO]";
+        //        var parameters = new { productos, sucursales };
+        //        return await connection.QueryAsync<DistribucionStockActualTransito>(query, parameters, commandType: CommandType.StoredProcedure);
+        //    }
+        //}
     }
 }
