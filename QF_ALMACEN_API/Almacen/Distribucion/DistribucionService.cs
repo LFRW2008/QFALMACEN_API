@@ -34,5 +34,10 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             return await _distribucionRepository.DistribucionObtenerStockActualYTransitoAsync(productos, sucursales);
         }
+
+        public async Task<IEnumerable<DistribucionLotesSalidaFEFO>> DistribucionAsignarLotesFEFOAsync(List<DistribucionLotesEntradaFEFO> distribucionLotesEntradaFEFO)
+        {
+            return await _distribucionRepository.DistribucionAsignarLotesFEFOAsync(distribucionLotesEntradaFEFO);
+        }
     }
 }

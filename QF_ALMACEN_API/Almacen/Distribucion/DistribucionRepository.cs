@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json;
 using QF_ALMACEN_API.Almacen.Distribucion.Models;
 using System.Data;
 
@@ -39,7 +40,7 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             using (var connection = new SqlConnection(_sigeConnection))
             {
-                var query = "[qfpharma].[sp_VentasUltimosMeses]";
+                var query = "[qfpharma].[sp_DistribucionVentasUltimosMeses]";
                 var parameters = new { idproductos, idsucursales, meses};
                 return await connection.QueryAsync<VentasProducto>(query, parameters, commandType: CommandType.StoredProcedure);
             }
@@ -55,14 +56,15 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             }
         }
 
-        //public async Task<IEnumerable<DistribucionStockActualTransito>> DistribucionObtenerStockActualYTransitoAsync(string productos, string sucursales)
-        //{
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        var query = "[almacen].[sp_DistribucionAsignarLotesFEFO]";
-        //        var parameters = new { productos, sucursales };
-        //        return await connection.QueryAsync<DistribucionStockActualTransito>(query, parameters, commandType: CommandType.StoredProcedure);
-        //    }
-        //}
+        public async Task<IEnumerable<DistribucionLotesSalidaFEFO>> DistribucionAsignarLotesFEFOAsync(List<DistribucionLotesEntradaFEFO> distribucionLotesEntradaFEFO)
+        {
+            var json = JsonConvert.SerializeObject(distribucionLotesEntradaFEFO);
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_DistribucionAsignarLotesFEFO]";
+                var parameters = new { @jsonRequests=json };
+                return await connection.QueryAsync<DistribucionLotesSalidaFEFO>(query, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
