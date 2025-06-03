@@ -50,4 +50,20 @@
         public decimal cantidad_enviada { get; set; }
         public decimal cantidad_total { get; set; }
     }
+
+    public class DistribucionFEFOAgregar
+    {
+        public int idsucursal_recibe { get; set; }
+        public int idproducto_envia { get; set; }
+        public string numlote_envia { get; set; }
+        public string fecharecepcion_envia { get; set; }
+        public int idsucursal_envia { get; set; }
+        public int idempresa_envia { get; set; }
+        public int idalmacensucursal_envia { get; set; }
+        public decimal cantidad_enviada { get; set; }
+        public decimal cantidad_total { get; set; }
+        public int idcorrelativo { get; set; }
+        public string num_serie { get; set; }
+        public int idempleado { get; set; }
+    }
 }

@@ -66,5 +66,40 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return await connection.QueryAsync<DistribucionLotesSalidaFEFO>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<string> DistribucionGenerarGuiasAsync(List<DistribucionFEFOAgregar> distribucion)
+        {
+            try
+            {
+                var json_distribucion = JsonConvert.SerializeObject(distribucion);        
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@json_distribucion", json_distribucion);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 50, direction: ParameterDirection.Output);
+
+                    var query = "almacen.sp_DistribucionGenerarGuias";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: No se recibió respuesta del procedimiento.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
     }
 }

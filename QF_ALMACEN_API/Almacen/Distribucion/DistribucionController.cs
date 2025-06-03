@@ -49,5 +49,20 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var lista = await _distribucionService.DistribucionAsignarLotesFEFOAsync(distribucionLotesEntradaFEFO);
             return Ok(lista);
         }
+
+        [HttpPost("DistribucionGenerarGuias")]
+        public async Task<IActionResult> DistribucionGenerarGuiasAsync([FromBody] List<DistribucionFEFOAgregar> distribucion)
+        {
+            var respuesta = await _distribucionService.DistribucionGenerarGuiasAsync(distribucion); ;
+
+            if (respuesta.Split("|")[0] == "OK")
+            {
+                return Ok(new { Success = true, Message = respuesta.Split("|")[1], Codigo = "" });
+            }
+            else
+            {
+                return BadRequest(new { Success = false, Message = respuesta, Codigo = "" });
+            }
+        }
     }
 }
