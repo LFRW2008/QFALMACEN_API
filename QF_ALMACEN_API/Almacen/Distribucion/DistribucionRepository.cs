@@ -76,7 +76,7 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 {
                     var parameters = new DynamicParameters();
                     parameters.Add("@json_distribucion", json_distribucion);
-                    parameters.Add("@respuesta", dbType: DbType.String, size: 50, direction: ParameterDirection.Output);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
 
                     var query = "almacen.sp_DistribucionGenerarGuias";
 
@@ -99,6 +99,33 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             catch (Exception ex)
             {
                 return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
+
+        public async Task<AuditoriaGuiaFiltros> DistribucionFiltrosAuditoriaAsync()
+        {
+            using var connection = new SqlConnection(_connectionString);
+
+            using var multi = await connection.QueryMultipleAsync(
+                "[almacen].[sp_DistribucionFiltrosAuditoria]", commandType: CommandType.StoredProcedure);
+
+            var estados = (await multi.ReadAsync<EstadoGuia>()).ToList();
+            var tipos = (await multi.ReadAsync<TipoGuia>()).ToList();
+
+            return new AuditoriaGuiaFiltros
+            {
+                estadosguia = estados,
+                tiposguia = tipos
+            };
+        }
+
+        public async Task<IEnumerable<GuiaAuditoriaCabecera>> DistribucionAuditoriaCabeceraAsync(int idsucursal_origen, int idsucursal_destino, int idtipoguia, int idestado, string fecha_inicio, string fecha_fin, string nro_documento)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_DistribucionAuditoriaCabecera]";
+                var parameters = new { idsucursal_origen, idsucursal_destino, idtipoguia, idestado, fecha_inicio, fecha_fin, nro_documento };
+                return await connection.QueryAsync<GuiaAuditoriaCabecera>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }

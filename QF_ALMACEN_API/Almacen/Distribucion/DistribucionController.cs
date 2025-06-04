@@ -64,5 +64,19 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return BadRequest(new { Success = false, Message = respuesta, Codigo = "" });
             }
         }
+
+        [HttpGet("DistribucionFiltrosAuditoria")]
+        public async Task<ActionResult<AuditoriaGuiaFiltros>> DistribucionFiltrosAuditoriaAsync()
+        {
+            var lista = await _distribucionService.DistribucionFiltrosAuditoriaAsync();
+            return Ok(lista);
+        }
+
+        [HttpGet("DistribucionAuditoriaCabecera")]
+        public async Task<ActionResult<AuditoriaGuiaFiltros>> DistribucionAuditoriaCabeceraAsync(int idsucursal_origen, int idsucursal_destino, int idtipoguia, int idestado, string fecha_inicio, string fecha_fin, string nro_documento)
+        {
+            var lista = await _distribucionService.DistribucionAuditoriaCabeceraAsync(idsucursal_origen, idsucursal_destino, idtipoguia, idestado, fecha_inicio, fecha_fin, nro_documento);
+            return Ok(lista);
+        }
     }
 }

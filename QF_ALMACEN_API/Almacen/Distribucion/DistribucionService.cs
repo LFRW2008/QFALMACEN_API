@@ -44,5 +44,15 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             return await _distribucionRepository.DistribucionGenerarGuiasAsync(distribucion);
         }
+
+        public async Task<AuditoriaGuiaFiltros> DistribucionFiltrosAuditoriaAsync()
+        {
+            return await _distribucionRepository.DistribucionFiltrosAuditoriaAsync();
+        }
+
+        public async Task<IEnumerable<GuiaAuditoriaCabecera>> DistribucionAuditoriaCabeceraAsync(int idsucursal_origen, int idsucursal_destino, int idtipoguia, int idestado, string fecha_inicio, string fecha_fin, string nro_documento)
+        {
+            return await _distribucionRepository.DistribucionAuditoriaCabeceraAsync(idsucursal_origen, idsucursal_destino, idtipoguia, idestado, fecha_inicio,fecha_fin, nro_documento);
+        }
     }
 }
