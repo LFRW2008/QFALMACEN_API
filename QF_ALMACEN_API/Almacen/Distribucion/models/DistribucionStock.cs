@@ -66,6 +66,7 @@
         public int idcorrelativo { get; set; }
         public string num_serie { get; set; }
         public int idempleado { get; set; }
+        public int num_item { get; set; }
     }
 
     public class AuditoriaGuiaFiltros
@@ -95,5 +96,18 @@
         public DateTime fecha_traslado { get; set; }
         public string tipo_guia { get; set; }
         public string estado { get; set; }
+    }
+
+    public class GuiaAuditoriaDetalle
+    {
+        public int num_item { get; set; }
+        public int codigo { get; set; }
+        public string producto { get; set; }
+        public decimal cantidad_guia { get; set; }
+        public int cantidad_picking { get; set; }
+        public string laboratorio { get; set; }
+        public string lote { get; set; }
+        public DateTime fecha_recepcion { get; set; }
+        public DateTime fecha_vencimiento { get; set; }
     }
 }

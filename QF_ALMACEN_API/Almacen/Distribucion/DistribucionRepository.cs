@@ -128,5 +128,15 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return await connection.QueryAsync<GuiaAuditoriaCabecera>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<IEnumerable<GuiaAuditoriaDetalle>> DistribucionAuditoriaDetalleAsync(string nro_documento, int idsucursal_origen)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_DistribucionAuditoriaDetalle]";
+                var parameters = new { nro_documento , idsucursal_origen };
+                return await connection.QueryAsync<GuiaAuditoriaDetalle>(query, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
