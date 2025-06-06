@@ -16,12 +16,12 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             _sigeConnection = configuration.GetConnectionString("SigeConnection");
         }
 
-        public async Task<IEnumerable<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto ,int idsucursal,int idlaboratorio,int idalmacensucursal)
+        public async Task<IEnumerable<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto ,int idsucursal,int idlaboratorio,int idalmacensucursal, string idtipoproducto, string filtro_stock)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 var query = "[almacen].[sp_DistribucionObtenerStock]";
-                var parameters = new { descripcion_producto,idsucursal,idlaboratorio,idalmacensucursal };
+                var parameters = new { descripcion_producto,idsucursal,idlaboratorio,idalmacensucursal, idtipoproducto, filtro_stock };
                 return await connection.QueryAsync<DistribucionStock>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }

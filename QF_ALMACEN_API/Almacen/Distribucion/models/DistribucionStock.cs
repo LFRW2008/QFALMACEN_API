@@ -11,6 +11,8 @@
         public string ventas { get; set; } = "A";
         public int idproducto_sige { get; set; }
         public string idtipo { get; set; }
+        public string idtipoproducto { get; set; }
+        public string filtro_stock { get; set; }
     }
 
     public class VentasProducto

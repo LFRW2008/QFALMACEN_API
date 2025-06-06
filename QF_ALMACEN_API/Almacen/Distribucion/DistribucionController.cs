@@ -16,9 +16,9 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         }
 
         [HttpGet("DistribucionObtenerStock")]
-        public async Task<ActionResult<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto, int idsucursal, int idlaboratorio, int idalmacensucursal)
+        public async Task<ActionResult<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto, int idsucursal, int idlaboratorio, int idalmacensucursal, string idtipoproducto, string filtro_stock)
         {
-            var lista = await _distribucionService.DistribucionObtenerStockAsync(descripcion_producto, idsucursal, idlaboratorio, idalmacensucursal);
+            var lista = await _distribucionService.DistribucionObtenerStockAsync(descripcion_producto, idsucursal, idlaboratorio, idalmacensucursal, idtipoproducto, filtro_stock);
             return Ok(lista);
         }
 

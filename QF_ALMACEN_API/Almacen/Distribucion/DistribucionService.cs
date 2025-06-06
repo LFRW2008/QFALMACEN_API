@@ -15,9 +15,9 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             _distribucionRepository = distribucionRepository;
         }
 
-        public async Task<IEnumerable<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto, int idsucursal, int idlaboratorio, int idalmacensucursal)
+        public async Task<IEnumerable<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto, int idsucursal, int idlaboratorio, int idalmacensucursal, string idtipoproducto, string filtro_stock)
         {
-            return await _distribucionRepository.DistribucionObtenerStockAsync(descripcion_producto, idsucursal, idlaboratorio, idalmacensucursal);
+            return await _distribucionRepository.DistribucionObtenerStockAsync(descripcion_producto, idsucursal, idlaboratorio, idalmacensucursal, idtipoproducto, filtro_stock);
         }
 
         public async Task<object> DistribucionCorrelativosGuiaAsync(int idsucursal)
