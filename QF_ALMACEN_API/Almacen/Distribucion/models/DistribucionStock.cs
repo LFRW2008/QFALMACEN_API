@@ -112,4 +112,10 @@
         public DateTime fecha_recepcion { get; set; }
         public DateTime fecha_vencimiento { get; set; }
     }
+
+    public class StockMultipleRequest
+    {
+        public string Productos { get; set; }     // Ej: "1,2,3"
+        public string Sucursales { get; set; }    // Ej: "101,102"
+    }
 }

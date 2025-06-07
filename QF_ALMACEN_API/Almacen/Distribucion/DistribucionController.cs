@@ -36,10 +36,17 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             return Ok(lista);
         }
 
-        [HttpGet("DistribucionObtenerStockActualYTransito")]
-        public async Task<ActionResult<DistribucionStockActualTransito>> DistribucionObtenerStockActualYTransitoAsync(string productos, string sucursales)
+        ////[HttpGet("DistribucionObtenerStockActualYTransito")]
+        ////public async Task<ActionResult<DistribucionStockActualTransito>> DistribucionObtenerStockActualYTransitoAsync(string productos, string sucursales)
+        ////{
+        ////    var lista = await _distribucionService.DistribucionObtenerStockActualYTransitoAsync(productos, sucursales);
+        ////    return Ok(lista);
+        ////}
+
+        [HttpPost("DistribucionObtenerStockActualYTransito")]
+        public async Task<ActionResult<DistribucionStockActualTransito>> DistribucionObtenerStockActualYTransitoAsync([FromBody] StockMultipleRequest request)
         {
-            var lista = await _distribucionService.DistribucionObtenerStockActualYTransitoAsync(productos, sucursales);
+            var lista = await _distribucionService.DistribucionObtenerStockActualYTransitoAsync(request.Productos, request.Sucursales);
             return Ok(lista);
         }
 
