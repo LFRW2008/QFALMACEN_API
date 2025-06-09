@@ -111,11 +111,15 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
 
             var estados = (await multi.ReadAsync<EstadoGuia>()).ToList();
             var tipos = (await multi.ReadAsync<TipoGuia>()).ToList();
+            var transportes = (await multi.ReadAsync<TransporteEmpresa>()).ToList();
+            var vehiculos = (await multi.ReadAsync<TransporteVehiculo>()).ToList();
 
             return new AuditoriaGuiaFiltros
             {
                 estadosguia = estados,
-                tiposguia = tipos
+                tiposguia = tipos,
+                transporte_empresas=transportes,
+                transporte_vehiculo=vehiculos
             };
         }
 
@@ -137,6 +141,30 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 var parameters = new { nro_documento , idsucursal_origen };
                 return await connection.QueryAsync<GuiaAuditoriaDetalle>(query, parameters, commandType: CommandType.StoredProcedure);
             }
+        }
+
+        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen)
+        {
+            using var connection = new SqlConnection(_connectionString);
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@nro_documento", nroDocumento, DbType.String);
+            parameters.Add("@idsucursal_origen", idSucursalOrigen, DbType.Int32);
+
+            using var multi = await connection.QueryMultipleAsync(
+                "[almacen].[sp_DistribucionBuscarGuia]",
+                param: parameters,
+                commandType: CommandType.StoredProcedure
+            );
+
+            var cabecera = (await multi.ReadAsync<EntradaDistribucionCabeceraDto>()).ToList();
+            var detalle = (await multi.ReadAsync<EntradaDistribucionDetalleDto>()).ToList();
+
+            return new DistribucionGuiaDto
+            {
+                Cabecera = cabecera.FirstOrDefault(),
+                Detalle = detalle
+            };
         }
     }
 }

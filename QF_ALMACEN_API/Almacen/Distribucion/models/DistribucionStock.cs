@@ -75,6 +75,8 @@
     {
         public List<EstadoGuia> estadosguia { get; set; }
         public List<TipoGuia> tiposguia { get; set; }
+        public List<TransporteEmpresa> transporte_empresas { get; set; }
+        public List<TransporteVehiculo> transporte_vehiculo { get; set; }
     }
 
     public class EstadoGuia
@@ -88,6 +90,22 @@
     {
         public int idtipoguia { get; set; }
         public string descripcion { get; set; }
+    }
+
+    public class TransporteEmpresa
+    {
+        public int idempresa { get; set; }
+        public string razonsocial { get; set; }
+    }
+
+    public class TransporteVehiculo
+    {
+        public int idvehiculo { get; set; }
+        public int idempresa { get; set; }
+        public string marca { get; set; }
+        public string modelocarro { get; set; }
+        public string matricula { get; set; }
+        public string licencia { get; set; }
     }
 
     public class GuiaAuditoriaCabecera
@@ -117,5 +135,51 @@
     {
         public string Productos { get; set; }     // Ej: "1,2,3"
         public string Sucursales { get; set; }    // Ej: "101,102"
+    }
+
+    public class EntradaDistribucionCabeceraDto
+    {
+        public string documento { get; set; }
+        public int idempresa { get; set; }
+        public string empresa { get; set; }
+        public int idsucursal { get; set; }
+        public string sucursalorigen { get; set; }
+        public int idsucursal_destino { get; set; }
+        public string sucursaldestino { get; set; }
+        public int? idempresatransporte { get; set; }
+        public string empresatransporte { get; set; }
+        public int? idvehiculo { get; set; }
+        public string placa { get; set; }
+        public string licencia { get; set; }
+        public string usuariocrea { get; set; }
+        public string usuariomantenimiento { get; set; }
+        public string observacion { get; set; }
+        public string estado_finalizado { get; set; }
+        public string fechatraslado { get; set; }
+        public decimal valor_peso { get; set; }
+        public int num_bultos { get; set; }
+    }
+
+
+    public class EntradaDistribucionDetalleDto
+    {
+        public int num_item { get; set; }
+        public int codigo { get; set; }
+        public string producto { get; set; }
+        public decimal cantidad_guia { get; set; }
+        public decimal cantidad_picking { get; set; }
+        public string laboratorio { get; set; }
+        public string lote { get; set; }
+        public string? fecha_recepcion { get; set; }
+        public string? fecha_vencimiento { get; set; }
+        public int idsucursal { get; set; }
+        public int idempresa { get; set; }
+        public string idalmacensucursal { get; set; }
+    }
+
+    public class DistribucionGuiaDto
+    {
+        public EntradaDistribucionCabeceraDto Cabecera { get; set; }
+        public List<EntradaDistribucionDetalleDto> Detalle { get; set; }
     }
 }

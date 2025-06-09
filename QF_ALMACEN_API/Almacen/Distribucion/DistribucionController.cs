@@ -92,5 +92,11 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var lista = await _distribucionService.DistribucionAuditoriaDetalleAsync(nro_documento, idsucursal_origen);
             return Ok(lista);
         }
+
+        [HttpGet("DistribucionBuscarGuia")]
+        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen)
+        {
+            return await _distribucionService.DistribucionBuscarGuiaAsync(nroDocumento, idSucursalOrigen);
+        }
     }
 }
