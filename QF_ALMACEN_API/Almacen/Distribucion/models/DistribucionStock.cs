@@ -131,6 +131,17 @@
         public DateTime fecha_vencimiento { get; set; }
     }
 
+    public class AuditoriaGuiaFiltroRequest
+    {
+        public int IdSucursalOrigen { get; set; }
+        public int IdSucursalDestino { get; set; }
+        public int IdTipoGuia { get; set; }
+        public int IdEstado { get; set; }
+        public string FechaInicio { get; set; }
+        public string FechaFin { get; set; }
+        public string NroDocumento { get; set; }
+    }
+
     public class StockMultipleRequest
     {
         public string Productos { get; set; }     // Ej: "1,2,3"

@@ -79,9 +79,24 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             return Ok(lista);
         }
 
-        [HttpGet("DistribucionAuditoriaCabecera")]
-        public async Task<ActionResult<AuditoriaGuiaFiltros>> DistribucionAuditoriaCabeceraAsync(int idsucursal_origen, int idsucursal_destino, int idtipoguia, int idestado, string fecha_inicio, string fecha_fin, string nro_documento)
+        //[HttpGet("DistribucionAuditoriaCabecera")]
+        //public async Task<ActionResult<AuditoriaGuiaFiltros>> DistribucionAuditoriaCabeceraAsync(int idsucursal_origen, int idsucursal_destino, int idtipoguia, int idestado, string fecha_inicio, string fecha_fin, string nro_documento)
+        //{
+        //    var lista = await _distribucionService.DistribucionAuditoriaCabeceraAsync(idsucursal_origen, idsucursal_destino, idtipoguia, idestado, fecha_inicio, fecha_fin, nro_documento);
+        //    return Ok(lista);
+        //}
+
+        [HttpPost("DistribucionAuditoriaCabecera")]
+        public async Task<ActionResult<AuditoriaGuiaFiltros>> DistribucionAuditoriaCabeceraAsync([FromBody] AuditoriaGuiaFiltroRequest filtro)
         {
+            var idsucursal_origen = filtro.IdSucursalOrigen;
+            var idsucursal_destino = filtro.IdSucursalDestino;
+            var idtipoguia = filtro.IdTipoGuia;
+            var idestado = filtro.IdEstado;
+            var fecha_inicio = filtro.FechaInicio;
+            var fecha_fin = filtro.FechaFin;
+            var nro_documento = filtro.NroDocumento;
+
             var lista = await _distribucionService.DistribucionAuditoriaCabeceraAsync(idsucursal_origen, idsucursal_destino, idtipoguia, idestado, fecha_inicio, fecha_fin, nro_documento);
             return Ok(lista);
         }
