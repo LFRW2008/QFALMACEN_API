@@ -29,10 +29,17 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             return Ok(lista);
         }
 
-        [HttpGet("VentasUltimosMeses")]
-        public async Task<ActionResult<VentasProducto>> VentasUltimosMesesAsync(string idproductos, string idsucursales, int meses)
+        //[HttpGet("VentasUltimosMeses")]
+        //public async Task<ActionResult<VentasProducto>> VentasUltimosMesesAsync(string idproductos, string idsucursales, int meses)
+        //{
+        //    var lista = await _distribucionService.VentasUltimosMesesAsync(idproductos, idsucursales, meses);
+        //    return Ok(lista);
+        //}
+
+        [HttpPost("VentasUltimosMeses")]
+        public async Task<ActionResult<VentasProducto>> VentasUltimosMesesAsync([FromBody] VentasUltimosMesesRequest request)
         {
-            var lista = await _distribucionService.VentasUltimosMesesAsync(idproductos, idsucursales, meses);
+            var lista = await _distribucionService.VentasUltimosMesesAsync(request.Productos, request.Sucursales, request.Meses);
             return Ok(lista);
         }
 

@@ -148,6 +148,13 @@
         public string Sucursales { get; set; }    // Ej: "101,102"
     }
 
+    public class VentasUltimosMesesRequest
+    {
+        public string Productos { get; set; }
+        public string Sucursales { get; set; }
+        public int Meses { get; set; }
+    }
+
     public class EntradaDistribucionCabeceraDto
     {
         public string documento { get; set; }
