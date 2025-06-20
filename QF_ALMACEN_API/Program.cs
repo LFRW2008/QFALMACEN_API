@@ -2,6 +2,7 @@ using QF_ALMACEN_API.Almacen.Distribucion;
 using QF_ALMACEN_API.Almacen.Factura;
 using QF_ALMACEN_API.Almacen.PreIngreso.Data;
 using QF_ALMACEN_API.Almacen.PreIngreso.Service;
+using QF_ALMACEN_API.Almacen.Productos;
 using QF_ALMACEN_API.General.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,12 +20,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<PreIngresoRepository>();
 builder.Services.AddScoped<FacturaRepository>();
 builder.Services.AddScoped<DistribucionRepository>();
+builder.Services.AddScoped<ProductosRepository>();
 
 //servivios
 
 builder.Services.AddScoped<PreIngresoService>();
 builder.Services.AddScoped<FacturaService>();
 builder.Services.AddScoped<DistribucionService>();
+builder.Services.AddScoped<ProductosService>();
 
 
 //Connection

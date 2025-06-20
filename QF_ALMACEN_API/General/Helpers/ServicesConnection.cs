@@ -17,7 +17,7 @@ namespace QF_ALMACEN_API.General.Helpers
         {
             _connectionLOGISTICA = configuration.GetConnectionString("LogisticaQFConnection");
             //_connection = configuration.GetConnectionString("LogisticaQFConnection");
-            // _connectionSISLAB = configuration.GetConnectionString("SislabConnection");
+            _connectionSISLAB = configuration.GetConnectionString("SislabConnection");
 
             //_connectionSIGE = configuration.GetConnectionString("SigeConnection");
 
