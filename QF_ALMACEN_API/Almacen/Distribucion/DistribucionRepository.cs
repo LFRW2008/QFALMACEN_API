@@ -166,5 +166,40 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 Detalle = detalle
             };
         }
+
+        public async Task<string> DistribucionEditarGuiaAsync(string distribucionguia)
+        {
+            try
+            {
+                //var json_distribucion = JsonConvert.SerializeObject(distribucionguia);
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@jsonguia", distribucionguia);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
+
+                    var query = "[almacen].[sp_DistribucionEditarGuia]";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: NO SE RECIBIÓ RESPUESTA DEL PROCEDIMIENTO.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
     }
 }

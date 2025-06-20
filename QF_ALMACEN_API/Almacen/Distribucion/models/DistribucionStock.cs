@@ -69,6 +69,9 @@
         public string num_serie { get; set; }
         public int idempleado { get; set; }
         public int num_item { get; set; }
+
+        public string fechatraslado { get; set; }
+        public string tipoguia { get; set; }
     }
 
     public class AuditoriaGuiaFiltros
@@ -83,6 +86,7 @@
     {
         public int idestado { get; set; }
         public string descripcion { get; set; }
+        public string codequiv { get; set; }
         public string ubicacion { get; set; }
     }
 
@@ -170,29 +174,37 @@
         public string placa { get; set; }
         public string licencia { get; set; }
         public string usuariocrea { get; set; }
-        public string usuariomantenimiento { get; set; }
+        public string usuariocrea_nombre { get; set; }
+        public string usuariomodifica_nombre { get; set; }
         public string observacion { get; set; }
         public string estado_finalizado { get; set; }
         public string fechatraslado { get; set; }
         public decimal valor_peso { get; set; }
         public int num_bultos { get; set; }
+
+        public string nro_documento { get; set; }
+        public string num_serie { get; set; }
+        public string fechaingreso { get; set; }
     }
 
 
     public class EntradaDistribucionDetalleDto
     {
         public int num_item { get; set; }
-        public int codigo { get; set; }
-        public string producto { get; set; }
-        public decimal cantidad_guia { get; set; }
+        public int idproducto { get; set; }
+        public string descripcion { get; set; }
+        public decimal cantidad_lote { get; set; }
         public decimal cantidad_picking { get; set; }
-        public string laboratorio { get; set; }
-        public string lote { get; set; }
-        public string? fecha_recepcion { get; set; }
-        public string? fecha_vencimiento { get; set; }
+        public string razonsocial { get; set; }
+        public string numero_lote { get; set; }
+        public string? fecha_recibimiento { get; set; }
+        public string? fecha_validez { get; set; }
         public int idsucursal { get; set; }
         public int idempresa { get; set; }
         public string idalmacensucursal { get; set; }
+        public string usuariocrea { get; set; }
+        public string fechacrea { get; set; }
+        public string fechaingreso { get; set; }
     }
 
     public class DistribucionGuiaDto

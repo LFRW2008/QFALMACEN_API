@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json;
 using QF_ALMACEN_API.Almacen.Distribucion.Models;
 using System.Data;
 using System.Diagnostics.Metrics;
@@ -63,6 +64,11 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen)
         {
             return await _distribucionRepository.DistribucionBuscarGuiaAsync(nroDocumento, idSucursalOrigen);
+        }
+
+        public async Task<string> DistribucionEditarGuiaAsync(string distribucionguia)
+        {
+            return await _distribucionRepository.DistribucionEditarGuiaAsync(distribucionguia);
         }
     }
 }
