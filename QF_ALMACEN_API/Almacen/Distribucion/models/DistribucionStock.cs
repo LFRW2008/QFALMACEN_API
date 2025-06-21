@@ -80,6 +80,8 @@
         public List<TipoGuia> tiposguia { get; set; }
         public List<TransporteEmpresa> transporte_empresas { get; set; }
         public List<TransporteVehiculo> transporte_vehiculo { get; set; }
+        public List<AlmacenSucursal> almacen_sucursal { get; set; }
+        public List<Empresa> empresas { get; set; }
     }
 
     public class EstadoGuia
@@ -110,6 +112,21 @@
         public string modelocarro { get; set; }
         public string matricula { get; set; }
         public string licencia { get; set; }
+    }
+
+    public class AlmacenSucursal
+    {
+        public int idsucursal { get; set; }
+        public int idalmacen { get; set; }
+        public string descripcion { get; set; }
+        public string ubicaciones { get; set; }
+        public string almacenes_sucursal { get; set; }
+    }
+
+    public class Empresa
+    {
+        public int idempresa { get; set; }
+        public string descripcion { get; set; }
     }
 
     public class GuiaAuditoriaCabecera
