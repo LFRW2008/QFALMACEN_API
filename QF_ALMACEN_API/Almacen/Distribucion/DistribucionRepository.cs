@@ -115,6 +115,7 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var vehiculos = (await multi.ReadAsync<TransporteVehiculo>()).ToList();
             var almacenes = (await multi.ReadAsync<AlmacenSucursal>()).ToList();
             var empresas = (await multi.ReadAsync<Empresa>()).ToList();
+            var tipoproductos = (await multi.ReadAsync<TipoProductos>()).ToList();
 
             return new AuditoriaGuiaFiltros
             {
@@ -123,7 +124,8 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 transporte_empresas=transportes,
                 transporte_vehiculo=vehiculos,
                 almacen_sucursal=almacenes,
-                empresas= empresas
+                empresas= empresas,
+                tipoproductos= tipoproductos
             };
         }
 

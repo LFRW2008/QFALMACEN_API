@@ -82,6 +82,7 @@
         public List<TransporteVehiculo> transporte_vehiculo { get; set; }
         public List<AlmacenSucursal> almacen_sucursal { get; set; }
         public List<Empresa> empresas { get; set; }
+        public List<TipoProductos> tipoproductos { get; set; }
     }
 
     public class EstadoGuia
@@ -129,6 +130,12 @@
         public string descripcion { get; set; }
     }
 
+    public class TipoProductos
+    {
+        public string idtipo { get; set; }
+        public string descripcion { get; set; }
+    }
+
     public class GuiaAuditoriaCabecera
     {
         public string nro_documento { get; set; }
@@ -137,6 +144,9 @@
         public DateTime fecha_traslado { get; set; }
         public string tipo_guia { get; set; }
         public string estado { get; set; }
+
+        public int idsucursal { get; set; }
+        public int idsucursal_destino { get; set; }
     }
 
     public class GuiaAuditoriaDetalle
