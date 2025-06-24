@@ -212,6 +212,14 @@
         public string nro_documento { get; set; }
         public string num_serie { get; set; }
         public string fechaingreso { get; set; }
+
+        public string punto_partida { get; set; }
+        public string punto_llegada { get; set; }
+        public string ruc_empresa { get; set; }
+        public string conductor { get; set; }
+        public string conductor_documentoidentidad { get; set; }
+        public string vehiculo_marcamodelo { get; set; }
+        public string tipo_guia { get; set; }
     }
 
 
@@ -232,6 +240,8 @@
         public string usuariocrea { get; set; }
         public string fechacrea { get; set; }
         public string fechaingreso { get; set; }
+
+        public string unidad_medida { get; set; }
     }
 
     public class DistribucionGuiaDto
