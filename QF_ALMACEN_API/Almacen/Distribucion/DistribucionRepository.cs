@@ -113,13 +113,19 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var tipos = (await multi.ReadAsync<TipoGuia>()).ToList();
             var transportes = (await multi.ReadAsync<TransporteEmpresa>()).ToList();
             var vehiculos = (await multi.ReadAsync<TransporteVehiculo>()).ToList();
+            var almacenes = (await multi.ReadAsync<AlmacenSucursal>()).ToList();
+            var empresas = (await multi.ReadAsync<Empresa>()).ToList();
+            var tipoproductos = (await multi.ReadAsync<TipoProductos>()).ToList();
 
             return new AuditoriaGuiaFiltros
             {
                 estadosguia = estados,
                 tiposguia = tipos,
                 transporte_empresas=transportes,
-                transporte_vehiculo=vehiculos
+                transporte_vehiculo=vehiculos,
+                almacen_sucursal=almacenes,
+                empresas= empresas,
+                tipoproductos= tipoproductos
             };
         }
 
@@ -165,6 +171,41 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 Cabecera = cabecera.FirstOrDefault(),
                 Detalle = detalle
             };
+        }
+
+        public async Task<string> DistribucionEditarGuiaAsync(string distribucionguia)
+        {
+            try
+            {
+                //var json_distribucion = JsonConvert.SerializeObject(distribucionguia);
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@jsonguia", distribucionguia);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
+
+                    var query = "[almacen].[sp_DistribucionEditarGuia]";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: NO SE RECIBIÓ RESPUESTA DEL PROCEDIMIENTO.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
         }
     }
 }

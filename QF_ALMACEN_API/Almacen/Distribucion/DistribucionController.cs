@@ -120,5 +120,20 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             return await _distribucionService.DistribucionBuscarGuiaAsync(nroDocumento, idSucursalOrigen);
         }
+
+        [HttpPost("DistribucionEditarGuia")]
+        public async Task<IActionResult> DistribucionEditarGuiaAsync([FromBody] string distribucionguia)
+        {
+            var respuesta = await _distribucionService.DistribucionEditarGuiaAsync(distribucionguia);
+
+            if (respuesta == "OK")
+            {
+                return Ok(new { Success = true, Message = "CAMBIOS GUARDADOS CORRECTAMENTE!!" });
+            }
+            else
+            {
+                return BadRequest(new { Success = false, Message = respuesta });
+            }
+        }
     }
 }
