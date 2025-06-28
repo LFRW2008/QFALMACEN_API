@@ -54,5 +54,72 @@
         {
             return productsRepository.listarTributos();
         }
+
+        public string listarPrincipioActivo()
+        {
+            return productsRepository.listarPrincipioActivo();
+        }
+
+        public string listarAccionFarmacologica()
+        {
+            return productsRepository.listarAccionFarmacologica();
+        }
+
+        public string insertarEditarProducto(string jsonProducto)
+        {
+            return productsRepository.insertarEditarProducto(jsonProducto);
+        }
+
+        public string listarProducto(int idproducto)
+        {
+            return productsRepository.listarProducto(idproducto);
+        }
+
+        public string InsertarEditar_PrincipioActivo(string jsonPrincipioActivo)
+        {
+            return productsRepository.InsertarEditar_PrincipioActivo(jsonPrincipioActivo);
+        }
+
+        public string InsertarEditarAccionFarma(string jsonAccionFarma)
+        {
+            return productsRepository.InsertarEditarAccionFarma(jsonAccionFarma);
+        }
+
+        public string insertarEditarRegistroSanitario(string jsonRegSanitario)
+        {
+            return productsRepository.insertarEditarRegistroSanitario(jsonRegSanitario);
+        }
+
+
+        public string listarAccionFarmaXProducto(int idproducto)
+        {
+            return productsRepository.listarAccionFarmaXProducto(idproducto);
+        }
+
+        public string listarPrincipioActivoXProducto(int idproducto)
+        {
+            return productsRepository.listarPrincipioActivoXProducto(idproducto);
+        }
+
+        public string listarRegistroSanitarioXProducto(int idproducto)
+        {
+            return productsRepository.listarRegistroSanitarioXProducto(idproducto);
+        }
+
+        public string actualizarEstadoDTPrincipioActivo(int idproducto, int idprincipio)
+        {
+            return productsRepository.actualizarEstadoDTPrincipioActivo(idproducto,idprincipio);
+        }
+
+        public string actualizarEstadoDTAccionFarma(int idproducto, int idaccionfarma)
+        {
+            return productsRepository.actualizarEstadoDTAccionFarma(idproducto, idaccionfarma);
+        }
+        //LISTADO TOTAL DE PRODUCTOS PARA EDITAR Y SELECCIONAR
+        public string listarProductos(string codigo)
+        {
+            return productsRepository.listarProductos(codigo);
+        }
+
     }
 }
