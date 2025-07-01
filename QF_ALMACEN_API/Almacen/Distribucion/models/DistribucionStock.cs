@@ -221,6 +221,12 @@
         public string conductor_documentoidentidad { get; set; }
         public string vehiculo_marcamodelo { get; set; }
         public string tipo_guia { get; set; }
+
+        public string mtc { get; set; }
+        public string unidad { get; set; }
+        public string ubigeo_llegada { get; set; }
+        public string ubigeo_partida { get; set; }
+        public string tarjeta_circulacion { get; set;}  
     }
 
 
