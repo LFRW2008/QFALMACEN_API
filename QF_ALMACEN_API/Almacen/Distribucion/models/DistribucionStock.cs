@@ -226,7 +226,8 @@
         public string unidad { get; set; }
         public string ubigeo_llegada { get; set; }
         public string ubigeo_partida { get; set; }
-        public string tarjeta_circulacion { get; set;}  
+        public string tarjeta_circulacion { get; set;}
+        
     }
 
 
@@ -249,6 +250,8 @@
         public string fechaingreso { get; set; }
 
         public string unidad_medida { get; set; }
+        public decimal precio_venta { get; set; }
+        public decimal valor_venta { get; set; }
     }
 
     public class DistribucionGuiaDto
