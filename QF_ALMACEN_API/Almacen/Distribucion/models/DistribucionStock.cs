@@ -73,6 +73,7 @@
 
         public string fechatraslado { get; set; }
         public string tipoguia { get; set; }
+        public int es_guiafactura { get; set; }
     }
 
     public class AuditoriaGuiaFiltros
@@ -148,6 +149,7 @@
 
         public int idsucursal { get; set; }
         public int idsucursal_destino { get; set; }
+        public bool es_guiafactura { get; set; }
     }
 
     public class GuiaAuditoriaDetalle
@@ -227,7 +229,8 @@
         public string ubigeo_llegada { get; set; }
         public string ubigeo_partida { get; set; }
         public string tarjeta_circulacion { get; set;}
-        
+        public int? idventa { get; set; }
+        public string datos_venta { get; set; }
     }
 
 
@@ -252,6 +255,8 @@
         public string unidad_medida { get; set; }
         public decimal precio_venta { get; set; }
         public decimal valor_venta { get; set; }
+        public string idtipo { get; set; }
+        
     }
 
     public class DistribucionGuiaDto
