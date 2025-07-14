@@ -14,8 +14,18 @@ namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
         [HttpGet("listarFacturaSinAO")]
         public string listarFacturaSinAO()
         {
-           return analisisOrganolepticoService.listarFacturaSinAO();
+            return analisisOrganolepticoService.listarFacturaSinAO();
+        }
+        [HttpGet("ObtenerCabeceraAO")]
+        public string ObtenerCabeceraAO(int idFactura)
+        {
+            return analisisOrganolepticoService.ObtenerCabeceraAO(idFactura);
         }
 
+        [HttpGet("CargarDetalleAO")]
+        public string CargarDetalleAO(int idFactura)
+        {
+            return analisisOrganolepticoService.CargarDetalleAO(idFactura);
+        }
     }
 }
