@@ -33,5 +33,10 @@ namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
             return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_CargarDetalleAO", parameter, 4);
         }
 
+        public string listar_resultadoAO()
+        {
+            return _connectionString.MetodoDatatabletostringsql("Preingreso.sp_listar_resultadoAO", null, 4);
+        }
+
     }
 }

@@ -27,5 +27,11 @@ namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
         {
             return analisisOrganolepticoService.CargarDetalleAO(idFactura);
         }
+
+        [HttpGet("listar_resultadoAO")]
+        public string listar_resultadoAO()
+        {
+            return analisisOrganolepticoService.listar_resultadoAO();
+        }
     }
 }

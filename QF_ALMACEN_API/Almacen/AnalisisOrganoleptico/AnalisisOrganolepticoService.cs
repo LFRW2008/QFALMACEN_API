@@ -37,6 +37,11 @@
             return resultado;
         }
 
+        public string listar_resultadoAO()
+        {
+            return analisisOrganolepticoRepository.listar_resultadoAO();
+        }
+
 
     }
 }
