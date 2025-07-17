@@ -42,6 +42,12 @@
             return analisisOrganolepticoRepository.listar_resultadoAO();
         }
 
+        public string InsertUpdateAO(string jsonAO)
+        {
+            return analisisOrganolepticoRepository.InsertUpdateAO(jsonAO);
+        }
+
+
 
     }
 }

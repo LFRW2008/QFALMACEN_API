@@ -33,5 +33,11 @@ namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
         {
             return analisisOrganolepticoService.listar_resultadoAO();
         }
+
+        [HttpPost("InsertUpdateAO")]
+        public string InsertUpdateAO([FromBody] string jsonAO)
+        {
+            return analisisOrganolepticoService.InsertUpdateAO(jsonAO);
+        }
     }
 }
