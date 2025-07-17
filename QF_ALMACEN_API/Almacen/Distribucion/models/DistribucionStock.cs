@@ -231,6 +231,7 @@
         public string tarjeta_circulacion { get; set;}
         public int? idventa { get; set; }
         public string datos_venta { get; set; }
+        public int? es_guiafactura { get; set; }
     }
 
 
