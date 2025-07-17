@@ -143,5 +143,12 @@ namespace QF_ALMACEN_API.Almacen.Productos
             return productosService.listarProductos(codigo);
         }
 
+        [HttpGet("obtenerProducto")]
+        public string obtenerProducto(string codigoProducto)
+        {
+            return productosService.obtenerProducto(codigoProducto);    
+        }
+
+
     }
 }
