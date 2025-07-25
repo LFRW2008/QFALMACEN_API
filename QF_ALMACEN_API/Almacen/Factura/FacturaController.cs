@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QF_ALMACEN_API.Almacen.Factura.Modelo;
 
 namespace QF_ALMACEN_API.Almacen.Factura
 {
@@ -80,6 +81,22 @@ namespace QF_ALMACEN_API.Almacen.Factura
         {
             return _FacturaService.listarFactura(idEstado);
         }
+
+        [HttpGet("obtenerActaRecepcion")]
+        public string obtenerActaRecepcion(int idFactura)
+        {
+            return _FacturaService.obtenerActaRecepcion(idFactura);
+        }
+
+
+        [HttpGet("ubigeos")]
+        public IActionResult ubigeos()
+        {
+            var lista = _FacturaService.ubigeos();
+
+            return Ok(lista);
+        }
+
 
 
     }

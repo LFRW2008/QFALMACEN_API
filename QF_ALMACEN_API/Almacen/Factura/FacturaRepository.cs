@@ -1,5 +1,8 @@
 ﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using QF_ALMACEN_API.Almacen.Factura.Modelo;
 using QF_ALMACEN_API.General.Helpers;
+using System.Data;
 using System.Runtime.CompilerServices;
 
 namespace QF_ALMACEN_API.Almacen.Factura
@@ -8,9 +11,12 @@ namespace QF_ALMACEN_API.Almacen.Factura
     {
         readonly ServicesConnection _connectionString;
 
+        private readonly string? cadenaConexionSislab;
+
         public FacturaRepository(ServicesConnection servicesConnection, IConfiguration configuration) {
 
             _connectionString = servicesConnection;
+            cadenaConexionSislab = configuration.GetConnectionString("SislabConnection");
         }  
 
         public string listaTPago()
@@ -107,6 +113,60 @@ namespace QF_ALMACEN_API.Almacen.Factura
             parameters.Add("@idEstado", idEstado);
             return _connectionString.MetodoDatatabletostringsql("Factura.sp_listarFactura", parameters, 4);
         }
+
+        public string obtenerActaRecepcion(int idFactura)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@idFactura", idFactura);
+
+            return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_obtenerActaRecepcion", parameters, 4);
+        }
+
+        public List<Ubigeo> ObtenerUbigeo()
+        {
+            var lista = new List<Ubigeo>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cadenaConexionSislab))
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("Principal.sp_listarDepartamento_Provincia_distrito", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    lista.Add(new Ubigeo
+                                    {
+                                        dep_codigo = reader.GetInt32(0),
+                                        nombredepartamento = reader.GetString(1),
+                                        pro_codigo = reader.GetInt32(2),
+                                        nombreprovincia = reader.GetString(3),
+                                        dis_codigo = reader.GetInt32(4),
+                                        nombredistrito = reader.GetString(5)
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Puedes loguear aquí si deseas
+                throw new Exception("Error al obtener los datos de Ubigeo.", ex);
+            }
+
+            return lista;
+        }
+
+
 
     }
 }
