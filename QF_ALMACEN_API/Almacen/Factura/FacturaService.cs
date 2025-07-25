@@ -72,6 +72,11 @@ namespace QF_ALMACEN_API.Almacen.Factura
             return _FacturaRepository.ingresarLotes_AprobarFactura(idFactura, idSucursal, idUsuario, userName);
         }
 
+        public string listarFactura(int idEstado)
+        {
+            return _FacturaRepository.listarFactura(idEstado);
+        }
+
 
     }
 }

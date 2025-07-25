@@ -101,5 +101,12 @@ namespace QF_ALMACEN_API.Almacen.Factura
             return _connectionString.MetodoRespuestasql("Factura.sp_ingresarLotes_TEST", parameter, 150, 4);
         }
 
+        public string listarFactura(int idEstado)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@idEstado", idEstado);
+            return _connectionString.MetodoDatatabletostringsql("Factura.sp_listarFactura", parameters, 4);
+        }
+
     }
 }
