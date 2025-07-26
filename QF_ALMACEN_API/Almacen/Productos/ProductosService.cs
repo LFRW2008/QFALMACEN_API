@@ -121,5 +121,10 @@
             return productsRepository.listarProductos(codigo);
         }
 
+        public string obtenerProducto(string codigoProducto)
+        {
+            return productsRepository.obtenerProducto(codigoProducto);
+        }
+
     }
 }

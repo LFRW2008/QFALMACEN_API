@@ -45,5 +45,12 @@ namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
             return _connectionString.MetodoRespuestasql("Preingreso.sp_insertarAO_TEST", parameters, 50, 4);
         }
 
+        public string ObtenerDetalleImpresion(int idanalisisOrganoleptico)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@idanalisisOrganoleptico", idanalisisOrganoleptico);
+
+            return _connectionString.MetodoDatatabletostringsql("Preingreso.sp_ObtenerDetalleImpresion", parameter, 4);
+        }
     }
 }

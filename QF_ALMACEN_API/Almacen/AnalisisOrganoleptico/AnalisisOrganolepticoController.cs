@@ -39,5 +39,12 @@ namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
         {
             return analisisOrganolepticoService.InsertUpdateAO(jsonAO);
         }
+
+        [HttpGet("ObtenerDetalleImpresion")]
+        public string ObtenerDetalleImpresion(int idanalisisOrganoleptico)
+        {
+            return analisisOrganolepticoService.ObtenerDetalleImpresion(idanalisisOrganoleptico);
+        }
+
     }
 }

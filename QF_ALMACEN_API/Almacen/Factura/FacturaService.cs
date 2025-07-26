@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using QF_ALMACEN_API.Almacen.Factura.Modelo;
 using System.Diagnostics.CodeAnalysis;
 
 namespace QF_ALMACEN_API.Almacen.Factura
@@ -72,6 +73,20 @@ namespace QF_ALMACEN_API.Almacen.Factura
             return _FacturaRepository.ingresarLotes_AprobarFactura(idFactura, idSucursal, idUsuario, userName);
         }
 
+        public string listarFactura(int idEstado)
+        {
+            return _FacturaRepository.listarFactura(idEstado);
+        }
+
+        public string obtenerActaRecepcion(int idFactura)
+        {
+            return _FacturaRepository.obtenerActaRecepcion(idFactura);
+        }
+
+        public List<Ubigeo> ubigeos()
+        {
+            return _FacturaRepository.ObtenerUbigeo();
+        }
 
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+
+namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
 {
     public class AnalisisOrganolepticoService
     {
@@ -47,6 +49,10 @@
             return analisisOrganolepticoRepository.InsertUpdateAO(jsonAO);
         }
 
+        public string ObtenerDetalleImpresion(int idanalisisOrganoleptico)
+        {
+            return analisisOrganolepticoRepository.ObtenerDetalleImpresion(idanalisisOrganoleptico);
+        }
 
 
     }

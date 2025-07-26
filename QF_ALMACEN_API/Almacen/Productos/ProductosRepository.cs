@@ -157,5 +157,14 @@ namespace QF_ALMACEN_API.Almacen.Productos
             parameter.Add("@codigo", codigo);
             return _servicesConnection.MetodoDatatabletostringsql("Productos.sp_listarProductos", parameter, 2);
         }
+
+        public string obtenerProducto(string codigoProducto)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@codigoProducto", codigoProducto);
+
+            return _servicesConnection.MetodoDatatabletostringsql("almacen.sp_obtenerProducto", parameter, 2);
+
+        }
     }
 }
