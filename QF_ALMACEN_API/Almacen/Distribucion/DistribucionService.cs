@@ -70,5 +70,10 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             return await _distribucionRepository.DistribucionEditarGuiaAsync(distribucionguia);
         }
+
+        public async Task<IEnumerable<VentasProducto>> DistribucionConsumoMateriaPrimaUltimosMesesAsync(string idproductos, string idsucursales, int meses)
+        {
+            return await _distribucionRepository.DistribucionConsumoMateriaPrimaUltimosMesesAsync(idproductos, idsucursales, meses);
+        }
     }
 }

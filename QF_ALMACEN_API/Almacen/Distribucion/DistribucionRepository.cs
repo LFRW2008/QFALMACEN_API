@@ -10,10 +10,12 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
     {
         private readonly string? _connectionString;
         private readonly string? _sigeConnection;
+        private readonly string? _SislabConnection_produccion;
         public DistribucionRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("SislabConnection");
             _sigeConnection = configuration.GetConnectionString("SigeConnection");
+            _SislabConnection_produccion = configuration.GetConnectionString("SislabConnection_produccion");
         }
 
         public async Task<IEnumerable<DistribucionStock>> DistribucionObtenerStockAsync(string descripcion_producto ,int idsucursal,int idlaboratorio,int idalmacensucursal, string idtipoproducto, string filtro_stock)
@@ -205,6 +207,16 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             catch (Exception ex)
             {
                 return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
+
+        public async Task<IEnumerable<VentasProducto>> DistribucionConsumoMateriaPrimaUltimosMesesAsync(string idproductos, string idsucursales, int meses)
+        {
+            using (var connection = new SqlConnection(_SislabConnection_produccion))
+            {
+                var query = "[almacen].[sp_DistribucionConsumoMateriaPrimaUltimosMeses]";
+                var parameters = new { idproductos, idsucursales, meses };
+                return await connection.QueryAsync<VentasProducto>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }

@@ -21,7 +21,7 @@
         public int idproducto { get; set; }
         public int idsucursal { get; set; }
         public string periodo { get; set; }
-        public int cantidadventas { get; set; }
+        public decimal cantidadventas { get; set; }
     }
 
     public class DistribucionStockActualTransito

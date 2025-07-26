@@ -135,5 +135,12 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return BadRequest(new { Success = false, Message = respuesta });
             }
         }
+
+        [HttpPost("DistribucionConsumoMateriaPrimaUltimosMeses")]
+        public async Task<ActionResult<VentasProducto>> DistribucionConsumoMateriaPrimaUltimosMesesAsync([FromBody] VentasUltimosMesesRequest request)
+        {
+            var lista = await _distribucionService.DistribucionConsumoMateriaPrimaUltimosMesesAsync(request.Productos, request.Sucursales, request.Meses);
+            return Ok(lista);
+        }
     }
 }
