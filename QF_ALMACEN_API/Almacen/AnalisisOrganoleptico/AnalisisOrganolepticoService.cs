@@ -39,9 +39,24 @@ namespace QF_ALMACEN_API.Almacen.AnalisisOrganoleptico
             return resultado;
         }
 
+        public string CargarDetalleAO_X_AO(int idAO)
+        {
+            string resultado = analisisOrganolepticoRepository.CargarDetalleAO_X_AO(idAO);
+            if (string.IsNullOrEmpty(resultado))
+            {
+                return "No se encontraron detalles para el análisis organoléptico especificado.";
+            }
+            return resultado;
+        }
+
         public string listar_resultadoAO()
         {
             return analisisOrganolepticoRepository.listar_resultadoAO();
+        }
+
+        public string listarAO()
+        {
+            return analisisOrganolepticoRepository.listarAO();
         }
 
         public string InsertUpdateAO(string jsonAO)
