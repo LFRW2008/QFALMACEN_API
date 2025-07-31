@@ -219,5 +219,15 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return await connection.QueryAsync<VentasProducto>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<IEnumerable<DistribucionProductoLote>> DistribucionObtenerProductoLotesAsync(int idproducto, int idsucursal)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_DistribucionObtenerProductoLotes]";
+                var parameters = new { idproducto, idsucursal};
+                return await connection.QueryAsync<DistribucionProductoLote>(query, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

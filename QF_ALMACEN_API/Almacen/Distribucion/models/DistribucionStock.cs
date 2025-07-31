@@ -265,4 +265,23 @@
         public EntradaDistribucionCabeceraDto Cabecera { get; set; }
         public List<EntradaDistribucionDetalleDto> Detalle { get; set; }
     }
+
+    public class DistribucionProductoLote
+    {
+        public int idproducto { get; set; }
+        public string numlote { get; set; }
+        public string descripcion_almacen { get; set; }
+        public DateTime fechavalidez { get; set; }
+        public decimal stock_sistema { get; set; }
+        public decimal stock_transito { get; set; }
+
+        // Propiedad calculada para el stock final
+        public decimal stock_final
+        {
+            get
+            {
+                return stock_sistema - stock_transito;
+            }
+        }
+    }
 }

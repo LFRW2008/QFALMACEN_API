@@ -142,5 +142,12 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var lista = await _distribucionService.DistribucionConsumoMateriaPrimaUltimosMesesAsync(request.Productos, request.Sucursales, request.Meses);
             return Ok(lista);
         }
+
+        [HttpGet("DistribucionObtenerProductoLotes")]
+        public async Task<ActionResult<DistribucionProductoLote>> DistribucionObtenerProductoLotesAsync(int idproducto, int idsucursal)
+        {
+            var lista = await _distribucionService.DistribucionObtenerProductoLotesAsync(idproducto, idsucursal);
+            return Ok(lista);
+        }
     }
 }
