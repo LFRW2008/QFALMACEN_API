@@ -16,14 +16,6 @@
         //public decimal stock_sistema { get; set; }
     }
 
-    public class VentasProducto
-    {
-        public int idproducto { get; set; }
-        public int idsucursal { get; set; }
-        public string periodo { get; set; }
-        public decimal cantidadventas { get; set; }
-    }
-
     public class DistribucionStockActualTransito
     {
         public int idproducto { get; set; }
@@ -284,4 +276,26 @@
             }
         }
     }
+
+    public class VentasProducto
+    {
+        public int idproducto { get; set; }
+        public int idsucursal { get; set; }
+        public string periodo { get; set; }
+        public decimal cantidadventas { get; set; }
+        public decimal stock_transito { get; set; }
+        public decimal stock_solicitado { get; set; }
+        public decimal stock_actual { get; set; }
+        
+    }
+
+    //public class DistribucionConsumoDetalle
+    //{
+    //    public int idproducto { get; set; }
+    //    public int idsucursal { get; set; }
+    //    public string periodo { get; set; } // Ej. "2025/01"
+    //    public decimal cantidadventas { get; set; }
+    //    public decimal stock_transito { get; set; }
+    //    public decimal stock_solicitado { get; set; }
+    //}
 }
