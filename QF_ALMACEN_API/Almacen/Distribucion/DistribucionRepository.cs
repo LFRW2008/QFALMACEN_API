@@ -229,5 +229,49 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return await connection.QueryAsync<DistribucionProductoLote>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<string> ProductoFraccionamientoRegistrarAsync(string fraccionamiento)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@json", fraccionamiento);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
+
+                    var query = "[almacen].[sp_FraccionamientoProductoRegistrar]";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: NO SE RECIBIÓ RESPUESTA DEL PROCEDIMIENTO.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
+
+        public async Task<IEnumerable<ProductoFraccionamiento>> ProductoFraccionamientoBuscarAsync(int idproducto)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_FraccionamientoProductoBuscar]";
+                var parameters = new { idproducto};
+                return await connection.QueryAsync<ProductoFraccionamiento>(query, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

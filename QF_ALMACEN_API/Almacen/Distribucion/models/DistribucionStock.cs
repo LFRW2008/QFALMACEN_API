@@ -28,7 +28,7 @@
     {
         public int idsucursal_envia { get; set; }
         public int idproducto { get; set; }
-        public int cantidad { get; set; }
+        public decimal cantidad { get; set; }
         public int idsucursal_recibe { get; set; }
         public string idalmacensucursal_envia { get; set; }
     }
@@ -264,6 +264,8 @@
         public string numlote { get; set; }
         public string descripcion_almacen { get; set; }
         public DateTime fechavalidez { get; set; }
+        public DateTime fecharecepcion { get; set; }
+        public string idalmacensucursal { get; set; }
         public decimal stock_sistema { get; set; }
         public decimal stock_transito { get; set; }
 
@@ -287,6 +289,16 @@
         public decimal stock_solicitado { get; set; }
         public decimal stock_actual { get; set; }
         
+    }
+
+
+    public class ProductoFraccionamiento
+    {
+        public int idfraccionamiento { get; set; }
+        public int idproducto { get; set; }
+        public string codigo_presentacion { get; set; }
+        public decimal equivalencia { get; set; }
+        public int usuariocrea { get; set; }
     }
 
     //public class DistribucionConsumoDetalle
