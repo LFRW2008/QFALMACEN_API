@@ -302,6 +302,21 @@
         public int usuariocrea { get; set; }
     }
 
+
+    public class FraccionamientoSolicitudDTO
+    {
+        public int idfraccionamientoSolicitud { get; set; }
+        public int idproducto { get; set; }
+        public string producto { get; set; }
+        public string numlote { get; set; }
+        public DateTime fecharecepcion { get; set; }
+        public int idalmacensucursal { get; set; }
+        public string descripcion_almacen { get; set; }
+        public DateTime fechacrea { get; set; }
+        public string username { get; set; }
+        public string situacion { get; set; }
+    }
+
     //public class DistribucionConsumoDetalle
     //{
     //    public int idproducto { get; set; }
@@ -311,4 +326,19 @@
     //    public decimal stock_transito { get; set; }
     //    public decimal stock_solicitado { get; set; }
     //}
+
+    public class FraccionamientoSolicitudDetalleDTO
+    {
+        public string codigo_presentacion { get; set; }
+        public decimal equivalencia { get; set; }
+        public decimal cantidad { get; set; }
+        public decimal total { get; set; }
+        public decimal total_real { get; set; }
+    }
+
+    public class FraccionamientoSolicitudResponse
+    {
+        public FraccionamientoSolicitudDTO cabecera { get; set; }
+        public List<FraccionamientoSolicitudDetalleDTO> detalle { get; set; }
+    }
 }

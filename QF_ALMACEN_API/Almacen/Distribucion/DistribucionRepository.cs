@@ -273,5 +273,73 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return await connection.QueryAsync<ProductoFraccionamiento>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<string> FraccionamientoSolicitudRegistrarAsync(string fraccionamiento)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@json", fraccionamiento);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
+
+                    var query = "[almacen].[sp_FraccionamientoSolicitudRegistrar]";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: NO SE RECIBIÓ RESPUESTA DEL PROCEDIMIENTO.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
+
+        public async Task<IEnumerable<FraccionamientoSolicitudDTO>> FraccionamientoSolicitudListarAsync(string fecha_inicial, string fecha_final)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_FraccionamientoSolicitudListar]";
+                var parameters = new { fecha_inicial, fecha_final };
+                return await connection.QueryAsync<FraccionamientoSolicitudDTO>(query, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
+        public async Task<FraccionamientoSolicitudResponse> FraccionamientoSolicitudBuscarAsync(int idfraccionamientoSolicitud)
+        {
+            using var connection = new SqlConnection(_connectionString);
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@idfraccionamientoSolicitud", idfraccionamientoSolicitud, DbType.Int32);
+
+            using var multi = await connection.QueryMultipleAsync(
+                "[almacen].[sp_FraccionamientoSolicitudBuscar]",
+                param: parameters,
+                commandType: CommandType.StoredProcedure
+            );
+
+            var cabecera = (await multi.ReadAsync<FraccionamientoSolicitudDTO>()).ToList();
+            var detalle = (await multi.ReadAsync<FraccionamientoSolicitudDetalleDTO>()).ToList();
+
+            return new FraccionamientoSolicitudResponse
+            {
+                cabecera = cabecera.FirstOrDefault(),
+                detalle = detalle
+            };
+        }
     }
 }

@@ -90,5 +90,20 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             return await _distribucionRepository.ProductoFraccionamientoBuscarAsync(idproducto);
         }
+
+        public async Task<string> FraccionamientoSolicitudRegistrarAsync(string fraccionamiento)
+        {
+            return await _distribucionRepository.FraccionamientoSolicitudRegistrarAsync(fraccionamiento);
+        }
+
+        public async Task<IEnumerable<FraccionamientoSolicitudDTO>> FraccionamientoSolicitudListarAsync(string fecha_inicial, string fecha_final)
+        {
+            return await _distribucionRepository.FraccionamientoSolicitudListarAsync(fecha_inicial, fecha_final);
+        }
+
+        public async Task<FraccionamientoSolicitudResponse> FraccionamientoSolicitudBuscarAsync(int idfraccionamientoSolicitud)
+        {
+            return await _distribucionRepository.FraccionamientoSolicitudBuscarAsync(idfraccionamientoSolicitud);
+        }
     }
 }

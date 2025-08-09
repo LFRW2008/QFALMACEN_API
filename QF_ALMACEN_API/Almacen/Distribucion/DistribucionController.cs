@@ -172,5 +172,33 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var lista = await _distribucionService.ProductoFraccionamientoBuscarAsync(idproducto);
             return Ok(lista);
         }
+
+        [HttpPost("FraccionamientoSolicitudRegistrar")]
+        public async Task<IActionResult> FraccionamientoSolicitudRegistrarAsync([FromBody] string fraccionamiento)
+        {
+            var respuesta = await _distribucionService.FraccionamientoSolicitudRegistrarAsync(fraccionamiento);
+
+            if (respuesta.Split("|")[0] == "OK")
+            {
+                return Ok(new { Success = true, Message = "CAMBIOS GUARDADOS CORRECTAMENTE!!", Codigo = respuesta.Split("|")[1] });
+            }
+            else
+            {
+                return BadRequest(new { Success = false, Message = respuesta, Codigo = "" });
+            }
+        }
+
+        [HttpGet("FraccionamientoSolicitudListar")]
+        public async Task<ActionResult<ProductoFraccionamiento>> FraccionamientoSolicitudListarAsync(string fecha_inicial, string fecha_final)
+        {
+            var lista = await _distribucionService.FraccionamientoSolicitudListarAsync(fecha_inicial, fecha_final);
+            return Ok(lista);
+        }
+
+        [HttpGet("FraccionamientoSolicitudBuscar")]
+        public async Task<FraccionamientoSolicitudResponse> FraccionamientoSolicitudBuscarAsync(int idfraccionamientoSolicitud)
+        {
+            return await _distribucionService.FraccionamientoSolicitudBuscarAsync(idfraccionamientoSolicitud);
+        }
     }
 }
