@@ -312,6 +312,8 @@
         public DateTime fecharecepcion { get; set; }
         public int idalmacensucursal { get; set; }
         public string descripcion_almacen { get; set; }
+        public decimal stock_sistema { get; set; }
+        public decimal stock_transito { get; set; }
         public DateTime fechacrea { get; set; }
         public string username { get; set; }
         public string situacion { get; set; }
@@ -334,6 +336,7 @@
         public decimal cantidad { get; set; }
         public decimal total { get; set; }
         public decimal total_real { get; set; }
+        public string situacion { get; set; }
     }
 
     public class FraccionamientoSolicitudResponse
