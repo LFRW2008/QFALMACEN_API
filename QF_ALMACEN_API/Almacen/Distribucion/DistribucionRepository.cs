@@ -334,12 +334,85 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
 
             var cabecera = (await multi.ReadAsync<FraccionamientoSolicitudDTO>()).ToList();
             var detalle = (await multi.ReadAsync<FraccionamientoSolicitudDetalleDTO>()).ToList();
+            var conjugados = (await multi.ReadAsync<ConjugadoLoteDTO>()).ToList();
 
             return new FraccionamientoSolicitudResponse
             {
                 cabecera = cabecera.FirstOrDefault(),
-                detalle = detalle
+                detalle = detalle,
+                conjugados_sublotes = conjugados
             };
+        }
+
+
+        public async Task<string> FraccionamientoSolicitudGuardarAsync(string fraccionamiento)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@json", fraccionamiento);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
+
+                    var query = "[almacen].[sp_FraccionamientoSolicitudGuardar]";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: NO SE RECIBIÓ RESPUESTA DEL PROCEDIMIENTO.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
+
+        public async Task<string> FraccionamientoSolicitudAnularAsync(string idfraccionamientoSolicitud, string codigo_presentacion, string usuario_anula)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@idfraccionamientoSolicitud", idfraccionamientoSolicitud);
+                    parameters.Add("@codigo_presentacion", codigo_presentacion);
+                    parameters.Add("@usuario_anula", usuario_anula);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
+
+                    var query = "[almacen].[sp_FraccionamientoSolicitudAnular]";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: NO SE RECIBIÓ RESPUESTA DEL PROCEDIMIENTO.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
         }
     }
 }

@@ -319,16 +319,6 @@
         public string situacion { get; set; }
     }
 
-    //public class DistribucionConsumoDetalle
-    //{
-    //    public int idproducto { get; set; }
-    //    public int idsucursal { get; set; }
-    //    public string periodo { get; set; } // Ej. "2025/01"
-    //    public decimal cantidadventas { get; set; }
-    //    public decimal stock_transito { get; set; }
-    //    public decimal stock_solicitado { get; set; }
-    //}
-
     public class FraccionamientoSolicitudDetalleDTO
     {
         public string codigo_presentacion { get; set; }
@@ -339,9 +329,22 @@
         public string situacion { get; set; }
     }
 
+    public class ConjugadoLoteDTO
+    {
+        public string codigo_presentacion { get; set; }   // clave del sublote
+        public int idproducto { get; set; }
+        public string descripcion { get; set; }
+        public int cantidad { get; set; }
+        public string numlote { get; set; }
+        public DateTime fecharecepcion { get; set; }
+        public int idalmacensucursal { get; set; }
+        public int idsucursal { get; set; }
+    }
+
     public class FraccionamientoSolicitudResponse
     {
         public FraccionamientoSolicitudDTO cabecera { get; set; }
         public List<FraccionamientoSolicitudDetalleDTO> detalle { get; set; }
+        public List<ConjugadoLoteDTO> conjugados_sublotes { get; set; }
     }
 }

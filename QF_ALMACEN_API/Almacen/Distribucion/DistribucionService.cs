@@ -105,5 +105,15 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             return await _distribucionRepository.FraccionamientoSolicitudBuscarAsync(idfraccionamientoSolicitud);
         }
+
+        public async Task<string> FraccionamientoSolicitudGuardarAsync(string fraccionamiento)
+        {
+            return await _distribucionRepository.FraccionamientoSolicitudGuardarAsync(fraccionamiento);
+        }
+
+        public async Task<string> FraccionamientoSolicitudAnularAsync(string idfraccionamientoSolicitud, string codigo_presentacion, string usuario_anula)
+        {
+            return await _distribucionRepository.FraccionamientoSolicitudAnularAsync(idfraccionamientoSolicitud, codigo_presentacion, usuario_anula);
+        }
     }
 }

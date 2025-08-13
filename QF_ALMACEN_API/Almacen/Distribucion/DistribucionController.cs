@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using QF_ALMACEN_API.Almacen.Distribucion.Models;
 
 namespace QF_ALMACEN_API.Almacen.Distribucion
@@ -199,6 +201,40 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         public async Task<FraccionamientoSolicitudResponse> FraccionamientoSolicitudBuscarAsync(int idfraccionamientoSolicitud)
         {
             return await _distribucionService.FraccionamientoSolicitudBuscarAsync(idfraccionamientoSolicitud);
+        }
+
+        [HttpPost("FraccionamientoSolicitudGuardar")]
+        public async Task<IActionResult> FraccionamientoSolicitudGuardarAsync([FromBody] string fraccionamiento)
+        {
+            var respuesta = await _distribucionService.FraccionamientoSolicitudGuardarAsync(fraccionamiento);
+
+            if (respuesta.Split("|")[0] == "OK")
+            {
+                return Ok(new { Success = true, Message = "CAMBIOS GUARDADOS CORRECTAMENTE!!", Codigo = respuesta.Split("|")[1] });
+            }
+            else
+            {
+                return BadRequest(new { Success = false, Message = respuesta, Codigo = "" });
+            }
+        }
+
+        [HttpPost("FraccionamientoSolicitudAnular")]
+        public async Task<IActionResult> FraccionamientoSolicitudAnularAsync([FromBody] string fraccionamiento)
+        {
+            dynamic datos = JsonConvert.DeserializeObject(fraccionamiento);
+            string idfraccionamientoSolicitud = (string)datos.idfraccionamientoSolicitud;
+            string codigo_presentacion = (string)datos.codigo_presentacion;
+            string usuario_anula = (string)datos.usuario_anula;
+            var respuesta = await _distribucionService.FraccionamientoSolicitudAnularAsync(idfraccionamientoSolicitud, codigo_presentacion, usuario_anula);
+
+            if (respuesta.Split("|")[0] == "OK")
+            {
+                return Ok(new { Success = true, Message = "EL CODIGO FUE ANULADO CORRECTAMENTE!!", Codigo = respuesta.Split("|")[1] });
+            }
+            else
+            {
+                return BadRequest(new { Success = false, Message = respuesta, Codigo = "" });
+            }
         }
     }
 }
