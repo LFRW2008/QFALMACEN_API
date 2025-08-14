@@ -322,6 +322,7 @@
     public class FraccionamientoSolicitudDetalleDTO
     {
         public string codigo_presentacion { get; set; }
+        public string codigo_sublote { get; set; }
         public decimal equivalencia { get; set; }
         public decimal cantidad { get; set; }
         public decimal total { get; set; }
@@ -346,5 +347,13 @@
         public FraccionamientoSolicitudDTO cabecera { get; set; }
         public List<FraccionamientoSolicitudDetalleDTO> detalle { get; set; }
         public List<ConjugadoLoteDTO> conjugados_sublotes { get; set; }
+    }
+
+    public class FraccionamientoUnidadesDTO
+    {
+        public string codigo_sublote { get; set; }
+        public decimal equivalencia { get; set; }
+        public decimal cantidad { get; set; }
+        public decimal total { get; set; }
     }
 }

@@ -414,5 +414,50 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return $"ERROR GENERAL: {ex.Message}";
             }
         }
+
+        public async Task<string> FraccionamientoSolicitudDescargarAsync(string fraccionamiento)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@json", fraccionamiento);
+                    parameters.Add("@respuesta", dbType: DbType.String, size: 100, direction: ParameterDirection.Output);
+
+                    var query = "[almacen].[sp_FraccionamientoSolicitudDescargar]";
+
+                    await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+
+                    var respuesta = parameters.Get<string>("@respuesta");
+
+                    if (string.IsNullOrEmpty(respuesta))
+                    {
+                        return "ERROR: NO SE RECIBIÓ RESPUESTA DEL PROCEDIMIENTO.";
+                    }
+
+                    return respuesta;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return $"ERROR SQL: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR GENERAL: {ex.Message}";
+            }
+        }
+
+
+        public async Task<IEnumerable<FraccionamientoUnidadesDTO>> FraccionamientoUnidadesBuscarAsync(int idproducto, string numlote, string fecharecepcion, int idalmacensucursal)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_FraccionamientoUnidadesBuscar]";
+                var parameters = new { idproducto, numlote,fecharecepcion,idalmacensucursal };
+                return await connection.QueryAsync<FraccionamientoUnidadesDTO>(query, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
