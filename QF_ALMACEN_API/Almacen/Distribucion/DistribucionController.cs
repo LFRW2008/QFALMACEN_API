@@ -111,16 +111,16 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         }
 
         [HttpGet("DistribucionAuditoriaDetalle")]
-        public async Task<ActionResult<AuditoriaGuiaFiltros>> DistribucionAuditoriaDetalleAsync(string nro_documento, int idsucursal_origen)
+        public async Task<ActionResult<AuditoriaGuiaFiltros>> DistribucionAuditoriaDetalleAsync(string nro_documento, int idsucursal_origen,int idsucursal_destino)
         {
-            var lista = await _distribucionService.DistribucionAuditoriaDetalleAsync(nro_documento, idsucursal_origen);
+            var lista = await _distribucionService.DistribucionAuditoriaDetalleAsync(nro_documento, idsucursal_origen, idsucursal_destino);
             return Ok(lista);
         }
 
         [HttpGet("DistribucionBuscarGuia")]
-        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen)
+        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen,int idSucursalDestino)
         {
-            return await _distribucionService.DistribucionBuscarGuiaAsync(nroDocumento, idSucursalOrigen);
+            return await _distribucionService.DistribucionBuscarGuiaAsync(nroDocumento, idSucursalOrigen, idSucursalDestino);
         }
 
         [HttpPost("DistribucionEditarGuia")]

@@ -141,23 +141,24 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             }
         }
 
-        public async Task<IEnumerable<GuiaAuditoriaDetalle>> DistribucionAuditoriaDetalleAsync(string nro_documento, int idsucursal_origen)
+        public async Task<IEnumerable<GuiaAuditoriaDetalle>> DistribucionAuditoriaDetalleAsync(string nro_documento, int idsucursal_origen,int idsucursal_destino)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 var query = "[almacen].[sp_DistribucionAuditoriaDetalle]";
-                var parameters = new { nro_documento , idsucursal_origen };
+                var parameters = new { nro_documento , idsucursal_origen , idsucursal_destino };
                 return await connection.QueryAsync<GuiaAuditoriaDetalle>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
 
-        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen)
+        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen, int idSucursalDestino)
         {
             using var connection = new SqlConnection(_connectionString);
 
             var parameters = new DynamicParameters();
             parameters.Add("@nro_documento", nroDocumento, DbType.String);
             parameters.Add("@idsucursal_origen", idSucursalOrigen, DbType.Int32);
+            parameters.Add("@idsucursal_destino", idSucursalDestino, DbType.Int32);
 
             using var multi = await connection.QueryMultipleAsync(
                 "[almacen].[sp_DistribucionBuscarGuia]",

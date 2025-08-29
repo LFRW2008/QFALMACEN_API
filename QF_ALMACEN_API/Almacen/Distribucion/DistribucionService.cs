@@ -56,14 +56,14 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             return await _distribucionRepository.DistribucionAuditoriaCabeceraAsync(idsucursal_origen, idsucursal_destino, idtipoguia, idestado, fecha_inicio,fecha_fin, nro_documento);
         }
 
-        public async Task<IEnumerable<GuiaAuditoriaDetalle>> DistribucionAuditoriaDetalleAsync(string nro_documento, int idsucursal_origen)
+        public async Task<IEnumerable<GuiaAuditoriaDetalle>> DistribucionAuditoriaDetalleAsync(string nro_documento, int idsucursal_origen,int idsucursal_destino)
         {
-            return await _distribucionRepository.DistribucionAuditoriaDetalleAsync(nro_documento, idsucursal_origen);
+            return await _distribucionRepository.DistribucionAuditoriaDetalleAsync(nro_documento, idsucursal_origen, idsucursal_destino);
         }
 
-        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen)
+        public async Task<DistribucionGuiaDto> DistribucionBuscarGuiaAsync(string nroDocumento, int idSucursalOrigen, int idSucursalDestino)
         {
-            return await _distribucionRepository.DistribucionBuscarGuiaAsync(nroDocumento, idSucursalOrigen);
+            return await _distribucionRepository.DistribucionBuscarGuiaAsync(nroDocumento, idSucursalOrigen, idSucursalDestino);
         }
 
         public async Task<string> DistribucionEditarGuiaAsync(string distribucionguia)
