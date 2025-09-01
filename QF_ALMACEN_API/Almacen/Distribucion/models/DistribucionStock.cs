@@ -143,6 +143,7 @@
         public int idsucursal { get; set; }
         public int idsucursal_destino { get; set; }
         public int idempresa_destino { get; set; }
+        public string estado_venta { get; set; }
         public bool es_guiafactura { get; set; }
     }
 
