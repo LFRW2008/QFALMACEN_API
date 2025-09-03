@@ -125,5 +125,10 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Data
             return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_ListarFacturas_PreIngreso", parameters, 4);
         }
 
+        public string listar_Preingresos()
+        {
+            return _connectionString.MetodoDatatabletostringsql("preingreso.sp_listar_Preingresos", null, 4);
+        }
+
     }
 }

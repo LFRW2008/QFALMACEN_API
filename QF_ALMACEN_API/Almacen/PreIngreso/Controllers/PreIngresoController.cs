@@ -106,5 +106,11 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Controllers
             return _PreIngresoService.ListarFacturas_PreIngreso(idPreIngreso);
         }
 
+        [HttpGet("listar_Preingresos")]
+        public string listar_Preingresos()
+        {
+            return _PreIngresoService.listar_Preingresos();
+        }
+
     }
 }

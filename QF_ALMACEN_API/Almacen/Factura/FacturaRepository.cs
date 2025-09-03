@@ -75,7 +75,7 @@ namespace QF_ALMACEN_API.Almacen.Factura
         {
             var parameters = new DynamicParameters();
             parameters.Add("@jsonFactura", jsonFactura);
-            return _connectionString.MetodoRespuestasql("Factura.sp_ActualizarCostos", parameters, 150, 4);
+            return _connectionString.MetodoRespuestasql("Factura.sp_ActualizarCostos_TEST", parameters, 150, 4);
         }
 
         public string ObtenerLote_AprobarFactura(int idFactura)
