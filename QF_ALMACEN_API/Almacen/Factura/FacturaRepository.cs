@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using QF_ALMACEN_API.Almacen.Factura.Modelo;
 using QF_ALMACEN_API.General.Helpers;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace QF_ALMACEN_API.Almacen.Factura
@@ -120,6 +121,13 @@ namespace QF_ALMACEN_API.Almacen.Factura
             parameters.Add("@idFactura", idFactura);
 
             return _connectionString.MetodoDatatabletostringsql("PreIngreso.sp_obtenerActaRecepcion", parameters, 4);
+        }
+
+        public string validar_EstadoFactura(int idfactura)
+        {
+            var parametro = new DynamicParameters();
+            parametro.Add("@idfactura", idfactura);
+            return _connectionString.MetodoRespuestasql("Factura.sp_validar_EstadoFactura", parametro, 50, 4);
         }
 
         public List<Ubigeo> ObtenerUbigeo()
