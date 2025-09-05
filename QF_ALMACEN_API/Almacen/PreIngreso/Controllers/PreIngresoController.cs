@@ -96,9 +96,9 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Controllers
             return _PreIngresoService.LotesPI_a_ProductoLote(jsonLotes);
         }
         [HttpPost("AnularPreIngresoLotes")]
-        public string AnularPreIngresoLotes([FromBody] string jsonLotes)
+        public string AnularPreIngresoLotes([FromBody] string jsonLotes, int idPreingreso)
         {
-            return _PreIngresoService.AnularPreIngresoLotes(jsonLotes);
+            return _PreIngresoService.AnularPreIngresoLotes(jsonLotes, idPreingreso);
         }
         [HttpGet("ListarFacturas_PreIngreso")]
         public string ListarFacturas_PreIngreso(int idPreIngreso)

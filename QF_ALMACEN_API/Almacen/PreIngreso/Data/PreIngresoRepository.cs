@@ -111,10 +111,11 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Data
         }
 
 
-        public string AnularPreIngresoLotes(string jsonLotes)
+        public string AnularPreIngresoLotes(string jsonLotes, int idPreingreso)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@jsonLotes", jsonLotes);
+            parameters.Add("@idPreingreso", idPreingreso);
             return _connectionString.MetodoRespuestasql("Almacen.sp_AnularPreIngresoLotes", parameters, 100, 4);
         }
 
@@ -129,6 +130,11 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Data
         {
             return _connectionString.MetodoDatatabletostringsql("preingreso.sp_listar_Preingresos", null, 4);
         }
-
+        public string obtenerEstadoPreIngreso(int idPreingreso)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@idPreingreso", idPreingreso);
+            return _connectionString.MetodoRespuestasql("preingreso.sp_obtenerEstadoPreIngreso", parameters, 50, 4);
+        }
     }
 }
