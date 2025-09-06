@@ -112,5 +112,12 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Controllers
             return _PreIngresoService.listar_Preingresos();
         }
 
+        [HttpGet("obtenerEstadoPreIngreso")]
+        public string obtenerEstadoPreIngreso(int idPreingreso)
+        {
+            return _PreIngresoService.obtenerEstadoPreIngreso(idPreingreso);
+        }
+
+
     }
 }
