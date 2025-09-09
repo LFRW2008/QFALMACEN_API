@@ -83,15 +83,26 @@ namespace QF_ALMACEN_API.Almacen.PreIngreso.Service
             return _PreIngresoRepository.LotesPI_a_ProductoLote(jsonLotes);
         }
 
-        public string AnularPreIngresoLotes(string jsonLotes)
+        public string AnularPreIngresoLotes(string jsonLotes, int idPreingreso)
         {
-            return _PreIngresoRepository.AnularPreIngresoLotes(jsonLotes);
+            return _PreIngresoRepository.AnularPreIngresoLotes(jsonLotes, idPreingreso);
         }
 
         public string ListarFacturas_PreIngreso(int idPreIngreso)
         {
             return _PreIngresoRepository.ListarFacturas_PreIngreso(idPreIngreso);
         }
+
+        public string listar_Preingresos()
+        {
+            return _PreIngresoRepository.listar_Preingresos();
+        }
+
+        public string obtenerEstadoPreIngreso(int idPreingreso)
+        {
+            return _PreIngresoRepository.obtenerEstadoPreIngreso(idPreingreso);
+        }
+
 
     }
 }

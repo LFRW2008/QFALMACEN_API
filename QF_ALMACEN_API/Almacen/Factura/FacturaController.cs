@@ -88,6 +88,11 @@ namespace QF_ALMACEN_API.Almacen.Factura
             return _FacturaService.obtenerActaRecepcion(idFactura);
         }
 
+        [HttpGet("validar_EstadoFactura")]
+        public string validar_EstadoFactura(int idfactura)
+        {
+            return _FacturaService.validar_EstadoFactura(idfactura);
+        }
 
         [HttpGet("ubigeos")]
         public IActionResult ubigeos()
