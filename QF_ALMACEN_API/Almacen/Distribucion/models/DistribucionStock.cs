@@ -193,6 +193,7 @@
         public string sucursalorigen { get; set; }
         public int idsucursal_destino { get; set; }
         public string sucursaldestino { get; set; }
+        public string sucursaldestino_ruc { get; set; }
         public int? idempresatransporte { get; set; }
         public string empresatransporte { get; set; }
         public int? idvehiculo { get; set; }
