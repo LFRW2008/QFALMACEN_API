@@ -17,7 +17,7 @@
         //public decimal stock_sistema { get; set; }
 
         public string unidad { get; set; }
-        public int presentacion { get; set; }
+        public decimal presentacion { get; set; }
     }
 
     public class DistribucionStockActualTransito
