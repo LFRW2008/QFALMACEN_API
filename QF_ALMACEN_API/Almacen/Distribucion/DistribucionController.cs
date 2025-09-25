@@ -258,5 +258,13 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var lista = await _distribucionService.FraccionamientoUnidadesBuscarAsync(idproducto, numlote, fecharecepcion, idalmacensucursal);
             return Ok(lista);
         }
+
+
+        [HttpPost("DistribucionAsignarSinStock")]
+        public async Task<ActionResult<DistribucionStockActualTransito>> DistribucionAsignarSinStockAsync([FromBody] List<DistribucionLotesEntradaFEFO> distribucionLotesEntradaFEFO)
+        {
+            var lista = await _distribucionService.DistribucionAsignarSinStockAsync(distribucionLotesEntradaFEFO);
+            return Ok(lista);
+        }
     }
 }

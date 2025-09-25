@@ -15,6 +15,9 @@
         public string filtro_stock { get; set; }
         public int idgrupo { get; set; }
         //public decimal stock_sistema { get; set; }
+
+        public string unidad { get; set; }
+        public int presentacion { get; set; }
     }
 
     public class DistribucionStockActualTransito

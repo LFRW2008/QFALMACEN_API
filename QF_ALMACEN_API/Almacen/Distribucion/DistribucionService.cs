@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using QF_ALMACEN_API.Almacen.Distribucion.Models;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics.Metrics;
 
@@ -124,6 +125,11 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         public async Task<IEnumerable<FraccionamientoUnidadesDTO>> FraccionamientoUnidadesBuscarAsync(int idproducto, string numlote, string fecharecepcion, int idalmacensucursal)
         {
             return await _distribucionRepository.FraccionamientoUnidadesBuscarAsync(idproducto, numlote, fecharecepcion, idalmacensucursal);
+        }
+
+        public async Task<IEnumerable<DistribucionLotesSalidaFEFO>> DistribucionAsignarSinStockAsync(List<DistribucionLotesEntradaFEFO> distribucionLotesEntradaFEFO)
+        {
+            return await _distribucionRepository.DistribucionAsignarSinStockAsync(distribucionLotesEntradaFEFO);
         }
     }
 }

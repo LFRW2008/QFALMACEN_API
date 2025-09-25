@@ -460,5 +460,16 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
                 return await connection.QueryAsync<FraccionamientoUnidadesDTO>(query, parameters, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<IEnumerable<DistribucionLotesSalidaFEFO>> DistribucionAsignarSinStockAsync(List<DistribucionLotesEntradaFEFO> distribucionLotesEntradaFEFO)
+        {
+            var json = JsonConvert.SerializeObject(distribucionLotesEntradaFEFO);
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "[almacen].[sp_DistribucionAsignarSinStock]";
+                var parameters = new { @jsonRequests = json };
+                return await connection.QueryAsync<DistribucionLotesSalidaFEFO>(query, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
