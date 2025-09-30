@@ -18,6 +18,7 @@
 
         public string unidad { get; set; }
         public decimal presentacion { get; set; }
+        public int multiplo { get; set; }
     }
 
     public class DistribucionStockActualTransito
@@ -256,7 +257,8 @@
         public decimal precio_venta { get; set; }
         public decimal valor_venta { get; set; }
         public string idtipo { get; set; }
-        
+
+        public int multiplo { get; set; }
     }
 
     public class DistribucionGuiaDto
