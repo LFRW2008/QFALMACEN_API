@@ -149,6 +149,7 @@
         public int idempresa_destino { get; set; }
         public string estado_venta { get; set; }
         public bool es_guiafactura { get; set; }
+        public int idventa { get; set; }
     }
 
     public class GuiaAuditoriaDetalle
