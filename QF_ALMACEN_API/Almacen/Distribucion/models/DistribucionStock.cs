@@ -365,4 +365,13 @@
         public decimal cantidad { get; set; }
         public decimal total { get; set; }
     }
+
+    public class DistribucionAnularGuiaRequest
+    {
+        public string nro_documento { get; set; }
+        public int idsucursal_origen { get; set; }
+        public int idsucursal_destino { get; set; }
+        public int idempleado_anula { get; set; }
+        public string motivo_anula { get; set; }
+    }
 }

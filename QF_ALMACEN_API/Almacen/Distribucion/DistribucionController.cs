@@ -266,5 +266,21 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
             var lista = await _distribucionService.DistribucionAsignarSinStockAsync(distribucionLotesEntradaFEFO);
             return Ok(lista);
         }
+
+
+        [HttpPost("DistribucionAnularGuia")]
+        public async Task<IActionResult> DistribucionAnularGuiaAsync([FromBody] DistribucionAnularGuiaRequest guiaRequest)
+        {
+            var respuesta = await _distribucionService.DistribucionAnularGuiaAsync(guiaRequest);
+
+            if (respuesta == "OK")
+            {
+                return Ok(new { Success = true, Message = "LA GUIA SE ANULO CORRECTAMENTE!!", Codigo = "" });
+            }
+            else
+            {
+                return BadRequest(new { Success = false, Message = respuesta, Codigo = "" });
+            }
+        }
     }
 }

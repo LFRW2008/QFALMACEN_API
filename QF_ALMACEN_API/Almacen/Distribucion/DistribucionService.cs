@@ -131,5 +131,10 @@ namespace QF_ALMACEN_API.Almacen.Distribucion
         {
             return await _distribucionRepository.DistribucionAsignarSinStockAsync(distribucionLotesEntradaFEFO);
         }
+
+        public async Task<string> DistribucionAnularGuiaAsync(DistribucionAnularGuiaRequest guiaRequest)
+        {
+            return await _distribucionRepository.DistribucionAnularGuiaAsync(guiaRequest);
+        }
     }
 }
