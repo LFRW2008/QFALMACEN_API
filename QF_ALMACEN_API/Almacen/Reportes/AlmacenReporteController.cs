@@ -50,6 +50,7 @@ namespace QF_ALMACEN_API.Almacen.Reportes
             new MovimientoDTO{ Id="S", Nombre="SALIDA"}
         });
         }
+
     }
 
 }
