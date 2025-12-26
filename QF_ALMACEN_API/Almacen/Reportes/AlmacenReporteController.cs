@@ -37,8 +37,10 @@ namespace QF_ALMACEN_API.Almacen.Reportes
         [HttpGet("ListarEmpresas")]
         public async Task<IActionResult> ListarEmpresas()
         {
+
             var data = await _service.ListarEmpresas();
             return Ok(data);
+
         }
 
         [HttpGet("ListarMovimientos")]
